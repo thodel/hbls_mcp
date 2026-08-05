@@ -1,0 +1,22 @@
+services:
+  hbls-mcp:
+    build: .
+    image: hbls-mcp:latest
+    container_name: hbls-mcp
+    restart: unless-stopped
+    ports:
+      - "8003:8003"
+    volumes:
+      - /home/dh/hbls_data:/data
+    environment:
+      - PYTHONUNBUFFERED=1
+      - HBLS_DB=/data/hbls.db
+      - HBLS_HOST=0.0.0.0
+      - HBLS_PORT=8003
+    healthcheck:
+      test: ["CMD", "python", "-c",
+             "import socket; socket.create_connection(('localhost', 8003), 3).close()"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
