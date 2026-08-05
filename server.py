@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-server.py — HBLS MCP server using mcp 2.0 MCPServer (StreamableHTTP transport, port 8003).
+server.py — HBLS MCP server (mcp 2.0 MCPServer, streamable HTTP, port 8003).
 
 Tools
 -----
@@ -43,29 +43,32 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# ── Args / env ─────────────────────────────────────────────────────────────────
+# ── Defaults / env ─────────────────────────────────────────────────────────────
+#
+# Read from the environment, not from sys.argv, so that importing this module never
+# parses arguments — argparse at import time hijacks the arguments of any process
+# that imports the server (tests, an ASGI loader). The CLI overrides these in main().
 
-parser = argparse.ArgumentParser(description="HBLS MCP server")
-parser.add_argument(
-    "--db",
-    default=os.environ.get("HBLS_DB", "/home/dh/hbls_mcp/hbls.db"),
-)
-parser.add_argument(
-    "--host",
-    default=os.environ.get("HBLS_HOST", "0.0.0.0"),
-)
-parser.add_argument(
-    "--port",
-    type=int,
-    default=int(os.environ.get("HBLS_PORT", "8003")),
-)
-parser.add_argument(
-    "--sse-path",
-    default="/sse",
-)
-args = parser.parse_args()
+DEFAULT_DB   = os.environ.get("HBLS_DB", "/data/hbls.db")
+DEFAULT_HOST = os.environ.get("HBLS_HOST", "0.0.0.0")
+DEFAULT_PORT = int(os.environ.get("HBLS_PORT", "8003"))
 
-db_module.set_db_path(args.db)
+
+def normalise_path(path):
+    """A single leading slash, no trailing slash — the form the ASGI route wants.
+
+    Behind a reverse proxy the server must answer on its *public* path: the
+    streamable-HTTP transport builds no URLs of its own, but the route only
+    matches what it was mounted at. Setting this to the public path (e.g.
+    /mcp/hbls/mcp) lets nginx proxy_pass without rewriting, which is the mismatch
+    that makes a sub-path deployment 404."""
+    cleaned = (path or "").strip().strip("/")
+    return f"/{cleaned}" if cleaned else "/mcp"
+
+
+DEFAULT_HTTP_PATH = normalise_path(os.environ.get("HBLS_HTTP_PATH", "/mcp"))
+
+db_module.set_db_path(DEFAULT_DB)
 
 # ── Server ─────────────────────────────────────────────────────────────────────
 
@@ -95,7 +98,7 @@ def corpus_stats() -> dict:
 @mcp.tool()
 def search(query: str, limit: int = 20) -> list[dict]:
     """Full-text search across HBLS articles (FTS5 or LIKE fallback)."""
-    return db_module.search_articles(query, min(limit, 100))
+    return db_module.search_articles(query, limit)
 
 
 @mcp.tool()
@@ -119,7 +122,7 @@ def get_article_by_page(volume: int, page: int) -> dict:
 @mcp.tool()
 def list_volume(volume: int, limit: int = 100, offset: int = 0) -> list[dict]:
     """List all article headwords in a given volume (paginated)."""
-    return db_module.list_volume_articles(volume, min(limit, 500), offset)
+    return db_module.list_volume_articles(volume, limit, offset)
 
 
 @mcp.tool()
@@ -131,13 +134,13 @@ def get_family_members(headword: str, volume: int) -> list[dict]:
 @mcp.tool()
 def search_persons(query: str, limit: int = 50) -> list[dict]:
     """Search persons by forename OR family name across all article categories."""
-    return db_module.search_persons(query, min(limit, 200))
+    return db_module.search_persons(query, limit)
 
 
 @mcp.tool()
 def search_bio(query: str, limit: int = 50) -> list[dict]:
     """Search persons in biography ('bio') articles only, by family name + forename."""
-    return db_module.search_bio(query, min(limit, 200))
+    return db_module.search_bio(query, limit)
 
 
 @mcp.tool()
@@ -155,8 +158,10 @@ def get_articles_by_category(
 ) -> list[dict]:
     """List articles filtered by category (fam | bio | geo | tem)."""
     if category not in ("fam", "bio", "geo", "tem"):
-        return {"error": "category must be one of: fam, bio, geo, tem"}
-    return db_module.get_articles_by_category(category, volume, min(limit, 500), offset)
+        # A bare dict here does not match the declared list[dict] output schema,
+        # which mcp 2.0 validates — the error has to be shaped like the result.
+        return [{"error": "category must be one of: fam, bio, geo, tem"}]
+    return db_module.get_articles_by_category(category, volume, limit, offset)
 
 
 @mcp.tool()
@@ -175,9 +180,11 @@ def resource_stats() -> str:
 
 @mcp.resource("hbls://volume/{volume}")
 def resource_volume(volume: str) -> str:
-    """All articles in a given volume as JSON."""
+    """Article index for one volume. Flags its own truncation rather than silently
+    returning a prefix: the cap keeps the payload under the ~150k-character result
+    limit Claude.ai and Claude Desktop apply."""
     return json.dumps(
-        db_module.list_volume_articles(int(volume), 9999),
+        db_module.volume_index(int(volume)),
         indent=2,
         ensure_ascii=False,
     )
@@ -198,12 +205,26 @@ async def health_check(request) -> JSONResponse:
     return JSONResponse({"status": "ok"})
 
 
-# ── Main ───────────────────────────────────────────────────────────────────────
+# ── Entry point ────────────────────────────────────────────────────────────────
 
-if __name__ == "__main__":
-    logger.info(f"HBLS MCP server starting on {args.host}:{args.port}")
+def parse_args(argv=None):
+    ap = argparse.ArgumentParser(description="HBLS MCP server")
+    ap.add_argument("--db",   default=DEFAULT_DB,   help="Path to hbls.db (env HBLS_DB)")
+    ap.add_argument("--host", default=DEFAULT_HOST, help="Bind address (env HBLS_HOST)")
+    ap.add_argument("--port", type=int, default=DEFAULT_PORT, help="Port (env HBLS_PORT)")
+    ap.add_argument("--http-path", default=DEFAULT_HTTP_PATH,
+                    help="Path the MCP endpoint is served at; set it to the public "
+                         "path when behind a reverse proxy (env HBLS_HTTP_PATH)")
+    args = ap.parse_args(argv)
+    args.http_path = normalise_path(args.http_path)
+    return args
+
+
+def main(argv=None):
+    args = parse_args(argv)
+    db_module.set_db_path(args.db)
+
     logger.info(f"  DB path   : {args.db}")
-    logger.info(f"  SSE path  : {args.sse_path}")
 
     try:
         stats = db_module.db_stats()
@@ -214,10 +235,17 @@ if __name__ == "__main__":
     except Exception as exc:
         logger.warning(f"Could not read DB stats on startup: {exc}")
 
-    # Use StreamableHTTP transport (more reliable than SSE for MCP 2.0.0)
+    # Streamable HTTP: one endpoint answering POST, GET and DELETE. The path was
+    # previously hard-coded to /messages/, which belongs to the SSE transport and
+    # made the endpoint impossible to guess from any client configuration.
+    logger.info(f"Starting HBLS MCP server on {args.host}:{args.port}{args.http_path}")
     mcp.run(
         transport="streamable-http",
         host=args.host,
         port=args.port,
-        streamable_http_path="/messages/",
+        streamable_http_path=args.http_path,
     )
+
+
+if __name__ == "__main__":
+    main()

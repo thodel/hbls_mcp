@@ -13,6 +13,10 @@ services:
       - HBLS_DB=/data/hbls.db
       - HBLS_HOST=0.0.0.0
       - HBLS_PORT=8003
+      # The server answers on its *public* path so nginx can proxy_pass without
+      # rewriting. Change this together with the nginx location block; the two
+      # must agree exactly or every request 404s.
+      - HBLS_HTTP_PATH=${HBLS_HTTP_PATH:-/mcp/hbls/mcp}
     healthcheck:
       test: ["CMD", "python", "-c",
              "import socket; socket.create_connection(('localhost', 8003), 3).close()"]
