@@ -126,6 +126,18 @@ roughly 150,000 characters. Search results therefore carry a snippet rather than
 full `article_text` — 20 full articles ran well past that limit. Use `get_article` for
 the text of one article.
 
+## Deployment
+
+This server runs on `tei.dh.unibe.ch` at
+**`https://tei.dh.unibe.ch/mcp/hbls/mcp`**, alongside four sibling MCP servers:
+[Königsfelden](https://github.com/thodel/kf_mcp), [SSRQ](https://github.com/thodel/ssrq_mcp), [HLS](https://github.com/thodel/hls_mcp), [EOS / HGB Basel](https://github.com/thodel/eos_mcp).
+
+What they share — the nginx routing, the landing pages, and the deploy sequence —
+lives in **[tei_mcp_ops](https://github.com/thodel/tei_mcp_ops)**. Start there for
+anything that spans the fleet; in particular, the app's `--http-path` and the nginx
+`location` have to be the same string, which is the rule a sub-path deployment turns
+on.
+
 ## Tests
 
 ```bash
