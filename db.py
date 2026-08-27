@@ -92,7 +92,7 @@ _VECTOR_CACHE: dict = {}
 
 _SEMANTIC_SQL = (
     "SELECT c.chunk_id,c.doc_id,c.chunk_index,c.char_start,c.char_end,c.text,"
-    "e.headword,e.volume,e.page,e.category "
+    "e.headword,e.volume,e.page "
     "FROM chunks c JOIN articles e ON e.id=c.doc_id "
     "WHERE c.chunk_id IN ({placeholders})"
 )
@@ -182,7 +182,6 @@ def search_semantic(query_vector, limit=20, model=None, year_from=None,
             "headword": row["headword"],
             "page": row["page"],
             "year": year,
-            "category": row["category"],
             "snippet": row["text"],
             "score": round(score, 4),
             "chunk_index": row["chunk_index"],
