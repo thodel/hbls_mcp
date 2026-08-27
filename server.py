@@ -90,6 +90,31 @@ mcp = MCPServer(
 # ── Tools ──────────────────────────────────────────────────────────────────────
 
 @mcp.tool()
+def search_semantic(query: str, limit: int = 20, per_document: int = 2) -> list[dict]:
+    """HBLS passages that answer a question, matched by meaning.
+
+    The reason this server embeds its own corpus. Measured before it was
+    built: a question in modern German returned one keyword hit against the
+    whole corpus, and that one matched on the word "die". The articles are a
+    century old and OCR'd, so the vocabulary has moved on and the scan carries
+    its own misreadings.
+
+    `per_document` caps how many passages one article may contribute.
+    """
+    import embeddings as emb
+
+    vector = emb.embed_query(query)
+    return db_module.search_semantic(vector, limit=limit, per_document=per_document)
+
+
+@mcp.tool()
+def semantic_index_stats() -> dict:
+    """Whether the semantic index is built, and over how much of the corpus."""
+    return db_module.semantic_stats()
+
+
+
+@mcp.tool()
 def corpus_stats() -> dict:
     """Return high-level corpus statistics."""
     return db_module.db_stats()

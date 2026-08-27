@@ -405,3 +405,86 @@ if __name__ == "__main__":
     print(f"\n{'═'*50}")
     print(f"{GREEN}ALL PASSED{RESET}" if ok_all else f"{RED}FAILURES{RESET}")
     sys.exit(0 if ok_all else 1)
+
+
+# ── Semantic search ───────────────────────────────────────────────────────────
+# Written before this shipped. The same port into ssrq_mcp produced four
+# failures in a row, each reaching the caller as an identical opaque
+# "Error executing tool search_semantic": a module missing from the image, a
+# missing module constant, another corpus's columns in the SQL, and a row key
+# that did not match the alias. One test over a real database catches all four.
+
+def _semantic_db(tmp_path):
+    import sqlite3
+    import struct
+
+    import db
+
+    path = tmp_path / "semantic.db"
+    conn = sqlite3.connect(path)
+    conn.executescript(db.SCHEMA_SQL)
+    conn.executescript(db.EMBEDDING_SCHEMA_SQL)
+    conn.execute(
+        "INSERT INTO articles (id, headword, volume, page, snippet, article_text, "
+        "pdf_url, category, lexical_class) VALUES "
+        "(1,'GONTENSCHWIL',3,86,'','Dorf im Kanton Aargau, Bezirk Kulm.',"
+        "'http://x','geo','place')")
+    conn.execute(
+        "INSERT INTO chunks (chunk_id, doc_id, chunk_index, char_start, char_end, text) "
+        "VALUES ('1#0','1',0,0,35,'Dorf im Kanton Aargau, Bezirk Kulm.')")
+    dims = 8
+    vector = [1.0] + [0.0] * (dims - 1)
+    conn.execute(
+        "INSERT INTO embeddings (chunk_id, model, dims, vector) VALUES (?,?,?,?)",
+        ("1#0", "test-model", dims, struct.pack(f"<{dims}f", *vector)))
+    conn.commit(); conn.close()
+    db.set_db_path(str(path))
+    db._VECTOR_CACHE.clear()
+    return db, vector
+
+
+def test_search_semantic_end_to_end(tmp_path):
+    db, vector = _semantic_db(tmp_path)
+
+    hits = db.search_semantic(vector, limit=5, model="test-model")
+
+    assert len(hits) == 1
+    hit = hits[0]
+    # An HBLS article is cited by headword, volume and page.
+    assert hit["headword"] == "GONTENSCHWIL"
+    assert hit["page"] == 86
+    assert hit["score"] > 0.99
+
+
+def test_semantic_stats_reports_coverage(tmp_path):
+    db, _ = _semantic_db(tmp_path)
+
+    stats = db.semantic_stats()
+
+    assert stats["n_chunks"] == 1 and stats["indexed"] is True
+
+
+def test_every_sql_statement_matches_the_schema(tmp_path):
+    import sqlite3
+
+    import db
+
+    conn = sqlite3.connect(tmp_path / "schema.db")
+    conn.executescript(db.SCHEMA_SQL)
+    conn.executescript(db.EMBEDDING_SCHEMA_SQL)
+    conn.execute(db._SEMANTIC_SQL.format(placeholders="?"), ("x",)).fetchall()
+    conn.close()
+
+
+def test_every_module_is_copied_into_the_image():
+    """hls_mcp shipped without embeddings.py and crash-looped on the import."""
+    import pathlib
+    import re
+
+    root = pathlib.Path(__file__).resolve().parent
+    copy_lines = [l for l in (root / "Dockerfile").read_text(encoding="utf-8").splitlines()
+                  if l.strip().startswith("COPY")]
+    copied = set(re.findall(r"([\w]+\.py)", " ".join(copy_lines)))
+    shipped = {p.name for p in root.glob("*.py")
+               if not p.name.startswith("test_") and p.name != "embed_db.py"}
+    assert not shipped - copied, f"not COPYed into the image: {sorted(shipped - copied)}"

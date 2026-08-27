@@ -1,3 +1,8 @@
 # The server imports mcp.server.mcpserver, which exists only in mcp 2.0 — the old
 # floor of >=1.0.0 would happily install a 1.x that cannot run this code at all.
 mcp>=2.0.0,<3
+
+# The semantic index: vectors come through the OpenAI-compatible GPUStack
+# API and are compared as a brute-force dot product over a numpy array.
+numpy
+openai
