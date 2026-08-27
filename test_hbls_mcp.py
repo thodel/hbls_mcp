@@ -488,3 +488,26 @@ def test_every_module_is_copied_into_the_image():
     shipped = {p.name for p in root.glob("*.py")
                if not p.name.startswith("test_") and p.name != "embed_db.py"}
     assert not shipped - copied, f"not COPYed into the image: {sorted(shipped - copied)}"
+
+
+def test_the_semantic_sql_uses_only_columns_the_deployed_database_has():
+    """SCHEMA_SQL is not what is deployed.
+
+    It declares category and lexical_class; the database on tei was built
+    before those were added and has neither. Building a fixture from
+    SCHEMA_SQL therefore proves nothing about production — the query passed
+    every local test and failed on the first real call with
+    'no such column: e.category'.
+
+    So this asserts against the columns that are actually there.
+    """
+    import re
+
+    import db
+
+    deployed = {"id", "headword", "volume", "page", "snippet", "article_text",
+                "pdf_url"}
+    referenced = set(re.findall(r"\be\.(\w+)", db._SEMANTIC_SQL))
+    assert referenced <= deployed, (
+        f"columns absent from the deployed database: {sorted(referenced - deployed)}"
+    )
