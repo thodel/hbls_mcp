@@ -92,7 +92,7 @@ _VECTOR_CACHE: dict = {}
 
 _SEMANTIC_SQL = (
     "SELECT c.chunk_id,c.doc_id,c.chunk_index,c.char_start,c.char_end,c.text,"
-    "e.headword,e.volume,e.page "
+    "e.headword,e.volume,e.page,e.pdf_url "
     "FROM chunks c JOIN articles e ON e.id=c.doc_id "
     "WHERE c.chunk_id IN ({placeholders})"
 )
@@ -168,10 +168,14 @@ def search_semantic(query_vector, limit=20, model=None, year_from=None,
         row = by_id.get(chunk_id)
         if row is None:
             continue                      # vector outlived its chunk
-        year = row["volume"]
-        if year_from is not None and (year is None or year < year_from):
+        volume = row["volume"]
+        # NOTE: year_from/year_to have always filtered on the volume number,
+        # which for this corpus is 1-8 and not a year at all. Left as it was —
+        # changing what a parameter means is not this change's business — but
+        # it is why the field below is no longer called "year".
+        if year_from is not None and (volume is None or volume < year_from):
             continue
-        if year_to is not None and (year is None or year > year_to):
+        if year_to is not None and (volume is None or volume > year_to):
             continue
         if seen.get(row["doc_id"], 0) >= per_document:
             continue
@@ -180,8 +184,13 @@ def search_semantic(query_vector, limit=20, model=None, year_from=None,
             "id": row["doc_id"],
             "chunk_id": chunk_id,
             "headword": row["headword"],
+            # An HBLS article is cited by headword, volume and page, and the
+            # PDF is the only place a reader can check it. A semantic hit that
+            # carries none of that is a passage nobody can follow — so it ships
+            # the same citation fields the keyword search has always returned.
+            "volume": volume,
             "page": row["page"],
-            "year": year,
+            "pdf_url": row["pdf_url"],
             "snippet": row["text"],
             "score": round(score, 4),
             "chunk_index": row["chunk_index"],
