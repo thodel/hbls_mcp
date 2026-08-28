@@ -456,6 +456,31 @@ def test_search_semantic_end_to_end(tmp_path):
     assert hit["score"] > 0.99
 
 
+def test_a_semantic_hit_carries_everything_needed_to_cite_it(tmp_path):
+    """The comment above says how an HBLS article is cited; this checks it.
+
+    The hit used to ship `headword` and `page` but no volume under that name
+    and no PDF link at all — the volume travelled as "year", which for this
+    corpus is a number between 1 and 8 and not a year. A consumer reading it
+    as a publication date got "1923" wrong by nineteen centuries, and a reader
+    following the citation got nowhere.
+
+    Downstream (ch-h-bot#271) this is what makes a semantic hit usable as
+    evidence rather than as an unfollowable claim.
+    """
+    db, vector = _semantic_db(tmp_path)
+
+    hit = db.search_semantic(vector, limit=5, model="test-model")[0]
+
+    assert hit["volume"] == 3
+    assert hit["pdf_url"] == "http://x"
+    assert "year" not in hit, (
+        "the volume must not travel as a year; it is 1-8 for this corpus")
+    # The same citation fields the keyword search has always returned.
+    for key in ("headword", "volume", "page", "pdf_url"):
+        assert key in hit, key
+
+
 def test_semantic_stats_reports_coverage(tmp_path):
     db, _ = _semantic_db(tmp_path)
 
