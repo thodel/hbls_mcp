@@ -101,9 +101,9 @@ def search_semantic(query: str, limit: int = 20, per_document: int = 2) -> list[
 
     `per_document` caps how many passages one article may contribute.
     """
-    import embeddings as emb
+    import corpus
 
-    vector = emb.embed_query(query)
+    vector = corpus.embed_query(query)
     return db_module.search_semantic(vector, limit=limit, per_document=per_document)
 
 
