@@ -90,7 +90,7 @@ mcp = MCPServer(
 # ── Tools ──────────────────────────────────────────────────────────────────────
 
 @mcp.tool()
-def search_semantic(query: str, limit: int = 20, per_document: int = 2) -> list[dict]:
+def search_semantic(query: str, limit: int = 20, per_parent: int = 2) -> list[dict]:
     """HBLS passages that answer a question, matched by meaning.
 
     The reason this server embeds its own corpus. Measured before it was
@@ -99,12 +99,14 @@ def search_semantic(query: str, limit: int = 20, per_document: int = 2) -> list[
     century old and OCR'd, so the vocabulary has moved on and the scan carries
     its own misreadings.
 
-    `per_document` caps how many passages one article may contribute.
+    `per_parent` caps how many passages one article may contribute. The
+    snippet is the passage without its `headword volume` head line; headword,
+    volume, page and pdf_url travel as fields.
     """
     import corpus
 
     vector = corpus.embed_query(query)
-    return db_module.search_semantic(vector, limit=limit, per_document=per_document)
+    return db_module.search_semantic(vector, limit=limit, per_parent=per_parent)
 
 
 @mcp.tool()
