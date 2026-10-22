@@ -49,6 +49,8 @@ without a `type` is read as a stdio server and skipped.
 | `get_pdf_url` | Direct PDF URL for headword/volume/page |
 | `get_articles_by_category` | List articles by category (fam/bio/geo/tem) |
 | `get_category_stats` | Article counts per category |
+| `search_semantic` | Passages matched by meaning; `per_parent` caps the passages per article |
+| `semantic_index_stats` | Coverage of the semantic index (`n_chunks`, `n_indexed`, `n_total`, `coverage`, runs) |
 
 ## Resources
 
@@ -63,6 +65,46 @@ The server expects the SQLite database at `/data/hbls.db` inside the container.
 Mount the host directory containing `hbls.db` to `/data`. `db.SCHEMA_SQL` holds the
 schema the server expects — the contract between the build pipeline and this server,
 and what the tests build their fixtures from.
+
+## Semantic index
+
+`search_semantic` answers from passage vectors stored in `hbls.db` next to the
+corpus (tables `chunks`, `embeddings`, `embedding_runs`). The index is built and
+searched by files shared across the fleet (ch-h-bot `docs/MCP_PROVIDER_PATTERN.md`),
+vendored byte-identical from
+[eperiodica_mcp](https://github.com/thodel/eperiodica_mcp):
+
+| File | Role |
+|------|------|
+| `embeddings.py` | GPUStack client, chunking, vector packing |
+| `vectorstore.py` | vector schema (`chunks.parent_id`), matrix, search, stats |
+| `embed_db.py` | builds the index: `python embed_db.py --db hbls.db`, `--status`, `--limit`, `--recompute`, `--reuse` |
+
+What is this corpus's lives in `corpus.py`: `iter_documents` yields every
+article with the head line `headword volume` that goes on the first line of
+every passage (for the vector; a hit's `snippet` is the passage without it),
+and `clean` resolves the edition's abbreviations with a vocabulary built over
+the whole table. `db.JOIN_SQL` and `db.row_to_hit` say how a chunk joins its
+article and what a hit carries: `id`, `chunk_id`, `headword`, `volume`, `page`,
+`pdf_url`, `snippet`, `score`, `chunk_index`, `char_start`, `char_end`.
+
+### Migrating an index built before #9
+
+An index written by the repo's former `embed_db.py` names the parent column
+`chunks.doc_id` and the run counter `embedding_runs.n_articles`; the shared
+schema says `parent_id` and `n_parents`. The passages themselves are identical
+(measured over all 54,015 in thodel/ch-h-bot#555), so the move is a rename and
+no re-embed. With the server stopped and a backup made by hand:
+
+```bash
+cp hbls.db hbls.db.pre-parent-id
+python migrate_parent_id.py --db hbls.db      # one transaction, then integrity_check
+python embed_db.py --db hbls.db --status      # n_chunks unchanged, nothing pending
+```
+
+The script is idempotent and prints the counts before and after. Code and
+rename have to go together: the old `db.py` asks for `doc_id`, the new one for
+`parent_id`, and a mismatch answers every `search_semantic` with «no such column».
 
 ## Transport
 
@@ -107,6 +149,9 @@ Starting HBLS MCP server on 0.0.0.0:8003/mcp/hbls/mcp
 | `HBLS_HOST` | `0.0.0.0` | Listen address |
 | `HBLS_PORT` | `8003` | Listen port |
 | `HBLS_HTTP_PATH` | `/mcp` | Path the MCP endpoint is served at |
+| `HBLS_EMBED_MODEL` | `qwen3-embedding-0.6b` | Embedding model, for queries and `embed_db.py` |
+| `HBLS_CHUNK_CHARS` / `HBLS_CHUNK_OVERLAP` | `1000` / `150` | Passage window for `embed_db.py` |
+| `GPUSTACK_BASE_URL` / `GPUSTACK_API_KEY` | | Embedding service |
 
 ## Query behaviour
 

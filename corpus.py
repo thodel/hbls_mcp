@@ -6,11 +6,11 @@ embeddings.py is vendored byte-identical across the fleet (see ch-h-bot
 docs/MCP_PROVIDER_PATTERN.md); whatever is particular to this corpus lives
 here instead, so that the shared file can stay a checksum.
 
-This repo is on the older layout: embed_db.py and the semantic search in db.py
-are its own, not the shared ones. Its index stores `chunks.doc_id` (the
-shared schema says `parent_id`) and puts a heading (title, year) on the first
-line of every passage, which the shared embed_db.py cannot do. Moving to the shared files is
-a schema migration plus a full re-embed, so it is a deployment, not a sync.
+embed_db.py and vectorstore.py are shared as well (thodel/hbls_mcp#9, plan and
+measurement in thodel/ch-h-bot#555). What they need from this file is the
+interface at the bottom: DB_ENV, DEFAULT_DB, PARENT_TABLE, iter_documents and
+clean. The head line on every passage, `headword volume`, is built by
+head_line — the one place that writes it, and the one db.py cuts it with.
 """
 
 from __future__ import annotations
@@ -128,6 +128,63 @@ def clean_entry_text(text: str, vocab: dict) -> str:
         out.append(token)
         i += 1
     return re.sub(r"\s+([,.;:])", r"\1", " ".join(out)).strip()
+
+
+# ── The interface the shared embed_db.py reads ──────────────────────────────
+
+DB_ENV = "HBLS_DB"
+DEFAULT_DB = "/data/hbls.db"
+PARENT_TABLE = "articles"
+
+# The expansion vocabulary of the whole corpus. iter_documents fills it before
+# its first yield; clean reads it. Module state rather than an argument because
+# the shared chunker calls clean(text) with nothing else.
+_VOCAB: dict = {}
+
+
+def head_line(headword, volume) -> str:
+    """The first line of every passage: headword and volume, as a reader cites
+    an HBLS article.
+
+    Verbatim — no strip, no normalisation. The 54,015 passages in the index
+    were written with exactly this expression by the old embed_db.py, and a
+    passage is found again only if its text is the same to the byte
+    (measured in thodel/ch-h-bot#555). db.passage_body cuts the same line.
+    """
+    return " ".join(str(x) for x in (headword, volume) if x)
+
+
+def clean(text: str) -> str:
+    """The expanded reading, resolved with the corpus vocabulary."""
+    return clean_entry_text(text, _VOCAB)
+
+
+def iter_documents(conn, limit=None):
+    """Yield (id, head, article_text) for every article not yet chunked.
+
+    The vocabulary is built over the WHOLE table first, including articles
+    already chunked and regardless of ``limit``: whether "Hein" is a fragment
+    or a name needs every occurrence of the token, not the ones in this batch
+    (see build_vocab). The shared build_chunks calls this before its first
+    clean, so the order holds.
+    """
+    global _VOCAB
+    _VOCAB = build_vocab(
+        t for (t,) in conn.execute(
+            "SELECT article_text FROM articles WHERE article_text IS NOT NULL"))
+    # chunks.parent_id is TEXT ('1', '2', …) and articles.id INTEGER; the
+    # comparison works through SQLite's affinity, as the search's join does.
+    rows = conn.execute(
+        """
+        SELECT e.id, e.headword, e.volume, e.article_text
+        FROM articles e
+        WHERE e.article_text IS NOT NULL AND e.article_text <> ''
+          AND NOT EXISTS (SELECT 1 FROM chunks c WHERE c.parent_id = e.id)
+        ORDER BY e.id
+        """ + (" LIMIT ?" if limit else ""),
+        (limit,) if limit else ()).fetchall()
+    for article_id, headword, volume, text in rows:
+        yield article_id, head_line(headword, volume), text
 
 
 def embed_query(query: str, model: str = emb.DEFAULT_MODEL, client=None) -> list[float]:

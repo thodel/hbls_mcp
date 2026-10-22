@@ -228,9 +228,14 @@ def test_server_module_registers_tools():
     tr = Checks()
     expected = {"corpus_stats", "search", "get_article", "get_article_by_page", "list_volume",
                 "get_family_members", "search_persons", "search_bio", "get_pdf_url",
-                "get_articles_by_category", "get_category_stats"}
-    names = {t.name for t in anyio.run(server_module.mcp.list_tools)}
+                "get_articles_by_category", "get_category_stats",
+                "search_semantic", "semantic_index_stats"}
+    tools = {t.name: t for t in anyio.run(server_module.mcp.list_tools)}
+    names = set(tools)
     tr.check(not expected - names, f"all tools registered (missing: {sorted(expected - names)})")
+    params = set(tools["search_semantic"].input_schema.get("properties", {}))
+    tr.check("per_parent" in params and "per_document" not in params,
+             f"search_semantic caps per_parent, as the shared vectorstore names it ({sorted(params)})")
 
     n = server_module.normalise_path
     tr.check(n("/mcp/hbls/mcp") == "/mcp/hbls/mcp", "an already-correct path is unchanged")
@@ -461,19 +466,20 @@ def _semantic_db(tmp_path):
     import struct
 
     import db
+    import vectorstore
 
     path = tmp_path / "semantic.db"
     conn = sqlite3.connect(path)
     conn.executescript(db.SCHEMA_SQL)
-    conn.executescript(db.EMBEDDING_SCHEMA_SQL)
+    conn.executescript(vectorstore.SCHEMA_SQL)
     conn.execute(
         "INSERT INTO articles (id, headword, volume, page, snippet, article_text, "
         "pdf_url, category, lexical_class) VALUES "
         "(1,'GONTENSCHWIL',3,86,'','Dorf im Kanton Aargau, Bezirk Kulm.',"
         "'http://x','geo','place')")
     conn.execute(
-        "INSERT INTO chunks (chunk_id, doc_id, chunk_index, char_start, char_end, text) "
-        "VALUES ('1#0','1',0,0,35,'Dorf im Kanton Aargau, Bezirk Kulm.')")
+        "INSERT INTO chunks (chunk_id, parent_id, chunk_index, char_start, char_end, text) "
+        "VALUES ('1#0','1',0,0,35,'GONTENSCHWIL 3\nDorf im Kanton Aargau, Bezirk Kulm.')")
     dims = 8
     vector = [1.0] + [0.0] * (dims - 1)
     conn.execute(
@@ -481,7 +487,7 @@ def _semantic_db(tmp_path):
         ("1#0", "test-model", dims, struct.pack(f"<{dims}f", *vector)))
     conn.commit(); conn.close()
     db.set_db_path(str(path))
-    db._VECTOR_CACHE.clear()
+    vectorstore.clear_cache()
     return db, vector
 
 
@@ -529,6 +535,11 @@ def test_semantic_stats_reports_coverage(tmp_path):
     stats = db.semantic_stats()
 
     assert stats["n_chunks"] == 1 and stats["indexed"] is True
+    # The shared vectorstore.stats names the parent counts n_indexed/n_total;
+    # the old n_entries_* keys are gone (thodel/ch-h-bot#555: nobody read them).
+    assert stats["n_indexed"] == 1 and stats["n_total"] == 1
+    assert stats["coverage"] == 1.0
+    assert not {k for k in stats if k.startswith("n_entries")}, sorted(stats)
 
 
 def test_every_sql_statement_matches_the_schema(tmp_path):
@@ -536,10 +547,12 @@ def test_every_sql_statement_matches_the_schema(tmp_path):
 
     import db
 
+    import vectorstore
+
     conn = sqlite3.connect(tmp_path / "schema.db")
     conn.executescript(db.SCHEMA_SQL)
-    conn.executescript(db.EMBEDDING_SCHEMA_SQL)
-    conn.execute(db._SEMANTIC_SQL.format(placeholders="?"), ("x",)).fetchall()
+    conn.executescript(vectorstore.SCHEMA_SQL)
+    conn.execute(db.JOIN_SQL.format(placeholders="?"), ("x",)).fetchall()
     conn.close()
 
 
@@ -552,8 +565,11 @@ def test_every_module_is_copied_into_the_image():
     copy_lines = [l for l in (root / "Dockerfile").read_text(encoding="utf-8").splitlines()
                   if l.strip().startswith("COPY")]
     copied = set(re.findall(r"([\w]+\.py)", " ".join(copy_lines)))
+    # embed_db.py and migrate_parent_id.py are run by hand on the host, not
+    # by the server.
     shipped = {p.name for p in root.glob("*.py")
-               if not p.name.startswith("test_") and p.name != "embed_db.py"}
+               if not p.name.startswith("test_")
+               and p.name not in ("embed_db.py", "migrate_parent_id.py")}
     assert not shipped - copied, f"not COPYed into the image: {sorted(shipped - copied)}"
 
 
@@ -574,7 +590,342 @@ def test_the_semantic_sql_uses_only_columns_the_deployed_database_has():
 
     deployed = {"id", "headword", "volume", "page", "snippet", "article_text",
                 "pdf_url"}
-    referenced = set(re.findall(r"\be\.(\w+)", db._SEMANTIC_SQL))
+    referenced = set(re.findall(r"\be\.(\w+)", db.JOIN_SQL))
     assert referenced <= deployed, (
         f"columns absent from the deployed database: {sorted(referenced - deployed)}"
     )
+
+
+# ── The move to the shared embed_db.py + vectorstore.py (#9) ─────────────────
+# The index on idhefix was written by this repo's old embed_db.py: 54,015
+# passages with `headword volume` on the first line, chunks.doc_id as TEXT next
+# to articles.id as INTEGER. ch-h-bot#555 measured that the shared build_chunks
+# reproduces every row byte for byte, so the migration is a column rename and
+# no re-embed. These tests pin the two halves of that on a fixture: the rows
+# the old code wrote (frozen below, from the old code before it was deleted)
+# and what the new code finds and writes after migrate_parent_id.py.
+
+import hashlib
+import struct
+
+# The schema the old embed_db.py built, as deployed: doc_id, n_articles,
+# ix_chunks_entry. Frozen here because the live code no longer has it.
+OLD_EMBEDDING_SCHEMA_SQL = """
+CREATE TABLE IF NOT EXISTS chunks (
+    chunk_id    TEXT    PRIMARY KEY,
+    doc_id    TEXT    NOT NULL,
+    chunk_index INTEGER NOT NULL,
+    char_start  INTEGER NOT NULL,
+    char_end    INTEGER NOT NULL,
+    text        TEXT    NOT NULL,
+    UNIQUE (doc_id, chunk_index)
+);
+CREATE TABLE IF NOT EXISTS embeddings (
+    chunk_id TEXT    PRIMARY KEY REFERENCES chunks(chunk_id) ON DELETE CASCADE,
+    model    TEXT    NOT NULL,
+    dims     INTEGER NOT NULL,
+    vector   BLOB    NOT NULL
+);
+CREATE TABLE IF NOT EXISTS embedding_runs (
+    run_id      TEXT PRIMARY KEY,
+    started_at  TEXT NOT NULL,
+    finished_at TEXT,
+    model       TEXT NOT NULL,
+    dims        INTEGER,
+    base_url    TEXT,
+    chunk_chars INTEGER,
+    chunk_overlap INTEGER,
+    n_articles  INTEGER,
+    n_chunks    INTEGER,
+    notes       TEXT
+);
+CREATE INDEX IF NOT EXISTS ix_chunks_entry ON chunks(doc_id);
+CREATE INDEX IF NOT EXISTS ix_embeddings_model ON embeddings(model);
+"""
+
+# Transcription with the edition's abbreviation marks (see corpus.py). "Hein"
+# is the lever: in article 1 alone it is a fragment four times and a word four
+# times, so it stays "Hein rich"; with article 3 counted the ratio tips to 6:4
+# and it becomes "Heinrich". Only a vocabulary over the whole table gets it.
+_LONG = (
+    "Zwingli, Ulrich, Reformator, geb. 1. Jan. 1484 in Wildhaus, gest. 11. Okt. 1531 bei Kappel. "
+    "Sohn des Ammanns Ulrich Zwingli un̄ und der Margaretha Bruggmann ✳ Studierte in Basel, Bern "
+    "un̄ und Wien, dann wieder in Basel, wo er 1506 Magister wurde. Hein r₎ rich war sein Bruder, "
+    "Hein hiess auch ein Vetter ✳ 1506 Leutpriester in Glarus, 1516 in Einsiedeln, 1519 in Zürich. "
+    "Diz ist dˀ der Anfang der Reformation in Zürich. "
+) * 4
+_HEINRICH = (
+    "Heinrich, Bischof von Konstanz. Hein r₎ rich stif tˀin terin un̄ und Hein r₎ rich der Ältere "
+    "✳ regierte lange. Das Kloster Oͤs wart un̄ und blieb."
+)
+
+# id, headword, volume, page, snippet, article_text, pdf_url, category, lexical_class.
+# "ZWINGLI " and "BRUGG " keep their trailing blank on purpose: a .strip() on
+# the head cost hls 11 passages in the measurement (8 titles with a blank at
+# the edge), so the head has to be verbatim. With no volume, "BRUGG " ends
+# the head and a strip would change it.
+MIGRATION_ARTICLES = [
+    (1, "ZWINGLI ", 7, 712, "Zürcher Reformatorenfamilie", _LONG,
+     "https://example.org/v7p712.pdf", "fam", "Familie"),
+    (2, "BRUGG ", None, 380, "Stadt im Aargau", "Brugg, Stadt un̄ und Bezirk im Kanton Aargau.",
+     "https://example.org/v2p380.pdf", "geo", "Stadt"),
+    (3, "HEINRICH", 3, 86, "Bischof", _HEINRICH,
+     "https://example.org/v3p86.pdf", "bio", "Person"),
+    (4, "LEER", 1, 1, "", "", "https://example.org/v1p1.pdf", "tem", "Begriff"),
+    (5, "NULL", 2, 2, "", None, "https://example.org/v2p2.pdf", "tem", "Begriff"),
+]
+
+# What the old code produced on MIGRATION_ARTICLES, recorded by running it
+# (embed_db.build_chunks of 897d9f1, chunk_chars=1000, chunk_overlap=150)
+# before it was deleted.
+OLD_HEADS = {1: "ZWINGLI  7", 2: "BRUGG ", 3: "HEINRICH 3", 4: "LEER 1", 5: "NULL 2"}
+OLD_CLEAN_2 = "Brugg, Stadtund Bezirk im Kanton Aargau."
+OLD_CLEAN_3 = ("Heinrich, Bischof von Konstanz. Heinrich stifterin und Heinrich der Ältere "
+               "regierte lange. Das Kloster Oͤs wartund blieb.")
+OLD_CLEAN_1_LEN, OLD_CLEAN_1_SHA = 1595, "46699d4bbc433952"
+# chunk_id, doc_id (TEXT), chunk_index, char_start, char_end, len(text), sha256[:16], text[:22]
+OLD_CHUNKS = [
+    ("1#0", "1", 0, 0, 890, 900, "9d580398a3cb39b8", "ZWINGLI  7\nZwingli, Ul"),
+    ("1#1", "1", 1, 740, 1595, 866, "47b853f32c519c24", "ZWINGLI  7\n9 in Zürich"),
+    ("2#0", "2", 0, 0, 40, 47, "78e20bc2269fb18d", "BRUGG \nBrugg, Stadtund"),
+    ("3#0", "3", 0, 0, 121, 132, "e076fa7382168a31", "HEINRICH 3\nHeinrich, B"),
+]
+FAKE_MODEL, FAKE_DIMS = "test-model", 8
+
+
+def _sha(text):
+    return hashlib.sha256(text.encode("utf-8")).hexdigest()[:16]
+
+
+def _chunk_rows(conn, parent_col):
+    return [(cid, pid, idx, cs, ce, len(t), _sha(t), t[:22]) for cid, pid, idx, cs, ce, t
+            in conn.execute(f"SELECT chunk_id, {parent_col}, chunk_index, char_start, "
+                            f"char_end, text FROM chunks ORDER BY chunk_id")]
+
+
+def _fake_vector(i):
+    v = [0.0] * FAKE_DIMS
+    v[i % FAKE_DIMS] = 1.0
+    return v
+
+
+def make_old_layout_db(path):
+    """A database as the old embed_db.py left it: INTEGER article ids, TEXT
+    doc_id, the old index and run columns, one fake vector per chunk."""
+    import db as db_module
+
+    con = sqlite3.connect(path)
+    con.executescript(db_module.SCHEMA_SQL)
+    con.executescript(OLD_EMBEDDING_SCHEMA_SQL)
+    con.executemany("INSERT INTO articles VALUES (?,?,?,?,?,?,?,?,?)", MIGRATION_ARTICLES)
+    for i, (cid, pid, idx, cs, ce, _n, _sha_, _head) in enumerate(OLD_CHUNKS):
+        # The old code wrote the chunk text itself; rebuild it from the same
+        # article text and check it against the frozen signature, so the
+        # fixture holds what the old code held and not a paraphrase.
+        text = _old_chunk_text(cid)
+        assert (len(text), _sha(text)) == (_n, _sha_), cid
+        con.execute("INSERT INTO chunks VALUES (?,?,?,?,?,?)", (cid, pid, idx, cs, ce, text))
+        con.execute("INSERT INTO embeddings VALUES (?,?,?,?)",
+                    (cid, FAKE_MODEL, FAKE_DIMS, struct.pack(f"<{FAKE_DIMS}f", *_fake_vector(i))))
+    con.execute("INSERT INTO embedding_runs (run_id, started_at, finished_at, model, dims, "
+                "n_articles, n_chunks) VALUES ('r1','2026-01-01T00:00:00Z',"
+                "'2026-01-01T00:01:00Z',?,?,3,4)", (FAKE_MODEL, FAKE_DIMS))
+    con.commit(); con.close()
+
+
+def _old_chunk_text(chunk_id):
+    """The text of one frozen chunk, rebuilt the way the old code built it:
+    head + newline + the window of the cleaned article text."""
+    import corpus
+
+    vocab = corpus.build_vocab(a[5] for a in MIGRATION_ARTICLES if a[5])
+    article = {a[0]: a for a in MIGRATION_ARTICLES}[int(chunk_id.split("#")[0])]
+    cleaned = corpus.clean_entry_text(article[5], vocab)
+    cid, pid, idx, cs, ce, *_ = next(r for r in OLD_CHUNKS if r[0] == chunk_id)
+    head = " ".join(str(x) for x in (article[1], article[2]) if x)
+    return f"{head}\n{cleaned[cs:ce].strip()}"
+
+
+def test_head_and_clean_are_what_the_old_embed_db_wrote():
+    """Frozen from the old code on the fixture. The head is verbatim — the
+    trailing blank of "ZWINGLI " survives as a double space, the one of
+    "BRUGG " (no volume) ends the head — and a volume of None adds nothing."""
+    import corpus
+
+    for aid, headword, volume, *_ in MIGRATION_ARTICLES:
+        assert corpus.head_line(headword, volume) == OLD_HEADS[aid], aid
+    assert corpus.head_line("ZWINGLI ", 7) == "ZWINGLI  7"
+    assert corpus.head_line("BRUGG ", None) == "BRUGG "
+
+    con = sqlite3.connect(":memory:")
+    con.executescript(corpus_schema_with_chunks())
+    con.executemany("INSERT INTO articles VALUES (?,?,?,?,?,?,?,?,?)", MIGRATION_ARTICLES)
+    docs = {aid: (head, text) for aid, head, text in corpus.iter_documents(con)}
+    assert sorted(docs) == [1, 2, 3], "empty and NULL texts are not documents"
+    assert corpus.clean(docs[2][1]) == OLD_CLEAN_2
+    assert corpus.clean(docs[3][1]) == OLD_CLEAN_3
+    cleaned_1 = corpus.clean(docs[1][1])
+    assert (len(cleaned_1), _sha(cleaned_1)) == (OLD_CLEAN_1_LEN, OLD_CLEAN_1_SHA)
+    assert "Heinrich war sein Bruder" in cleaned_1
+
+
+def corpus_schema_with_chunks():
+    import db as db_module
+    import vectorstore
+    return db_module.SCHEMA_SQL + vectorstore.SCHEMA_SQL
+
+
+def test_the_vocabulary_is_built_over_the_whole_table_regardless_of_limit():
+    """iter_documents(limit=1) yields article 1 only, but "Hein" must still be
+    judged with article 3 counted: the old embed_db.py built the vocabulary
+    before applying --limit, and that is how the 54,015 passages were
+    measured row-identical. A vocabulary over the yielded rows alone gives
+    "Hein rich"."""
+    import corpus
+
+    con = sqlite3.connect(":memory:")
+    con.executescript(corpus_schema_with_chunks())
+    con.executemany("INSERT INTO articles VALUES (?,?,?,?,?,?,?,?,?)", MIGRATION_ARTICLES)
+    docs = list(corpus.iter_documents(con, limit=1))
+    assert [d[0] for d in docs] == [1]
+    cleaned = corpus.clean(docs[0][2])
+    assert "Heinrich war sein Bruder" in cleaned and "Hein rich" not in cleaned
+    # The counter-case, so the assertion above is known to discriminate.
+    assert "Hein rich" in corpus.clean_entry_text(_LONG, corpus.build_vocab([_LONG]))
+
+
+def test_the_shared_build_chunks_writes_the_rows_the_old_code_wrote(tmp_path):
+    """The measurement of ch-h-bot#555 on the fixture: same chunk ids, same
+    parent (TEXT, through SQLite affinity against INTEGER article ids), same
+    offsets, same text to the byte."""
+    import embed_db
+    import vectorstore
+
+    path = tmp_path / "rebuild.db"
+    con = sqlite3.connect(path)
+    con.executescript(corpus_schema_with_chunks())
+    con.executemany("INSERT INTO articles VALUES (?,?,?,?,?,?,?,?,?)", MIGRATION_ARTICLES)
+    written = embed_db.build_chunks(con, None, 1000, 150, True)
+    assert written == len(OLD_CHUNKS)
+    assert _chunk_rows(con, "parent_id") == OLD_CHUNKS
+    assert con.execute("SELECT DISTINCT typeof(parent_id) FROM chunks").fetchall() == [("text",)]
+    # A second pass finds nothing left to chunk.
+    assert embed_db.build_chunks(con, None, 1000, 150, True) == 0
+    con.close()
+
+
+def test_migration_keeps_every_chunk_and_vector(tmp_path):
+    """migrate_parent_id.py on a database in the old layout: afterwards the
+    shared embed_db.py finds every chunk with its vector and has nothing to
+    embed, and search_semantic answers through vectorstore."""
+    import db as db_module
+    import embed_db
+    import migrate_parent_id
+    import vectorstore
+
+    path = tmp_path / "old.db"
+    make_old_layout_db(path)
+    before = _chunk_rows(sqlite3.connect(path), "doc_id")
+    assert before == OLD_CHUNKS
+
+    assert migrate_parent_id.main(["--db", str(path)]) == 0
+    con = sqlite3.connect(path)
+    cols = [r[1] for r in con.execute("PRAGMA table_info(chunks)")]
+    assert "parent_id" in cols and "doc_id" not in cols
+    run_cols = [r[1] for r in con.execute("PRAGMA table_info(embedding_runs)")]
+    assert "n_parents" in run_cols and "n_articles" not in run_cols
+    index_names = sorted(r[1] for r in con.execute("PRAGMA index_list(chunks)")
+                         if not r[1].startswith("sqlite_autoindex"))
+    assert index_names == ["ix_chunks_parent"]
+    assert con.execute("SELECT typeof(parent_id) FROM chunks LIMIT 1").fetchone() == ("text",)
+    assert _chunk_rows(con, "parent_id") == OLD_CHUNKS
+    assert con.execute("SELECT COUNT(*) FROM embeddings").fetchone()[0] == len(OLD_CHUNKS)
+    # The shared SCHEMA_SQL on top adds nothing: no second index.
+    con.executescript(vectorstore.SCHEMA_SQL)
+    assert sorted(r[1] for r in con.execute("PRAGMA index_list(chunks)")
+                  if not r[1].startswith("sqlite_autoindex")) == ["ix_chunks_parent"]
+    con.close()
+
+    # Idempotent: a second run changes nothing and still passes its checks.
+    assert migrate_parent_id.main(["--db", str(path)]) == 0
+    assert _chunk_rows(sqlite3.connect(path), "parent_id") == OLD_CHUNKS
+
+    # The shared embed_db.py: nothing new to chunk, nothing pending to embed —
+    # it returns before it would open a client, so no GPUStack is needed.
+    assert embed_db.main(["--db", str(path), "--model", FAKE_MODEL, "--quiet"]) == 0
+    con = sqlite3.connect(path)
+    assert _chunk_rows(con, "parent_id") == OLD_CHUNKS
+    assert con.execute("SELECT COUNT(*) FROM embeddings").fetchone()[0] == len(OLD_CHUNKS)
+    pending = con.execute(
+        "SELECT COUNT(*) FROM chunks c LEFT JOIN embeddings e ON e.chunk_id = c.chunk_id "
+        "AND e.model = ? WHERE e.chunk_id IS NULL", (FAKE_MODEL,)).fetchone()[0]
+    assert pending == 0
+    last_run = con.execute("SELECT n_parents, n_chunks FROM embedding_runs "
+                           "ORDER BY started_at DESC LIMIT 1").fetchone()
+    assert last_run == (3, 4)
+    con.close()
+    assert embed_db.main(["--db", str(path), "--status"]) == 0
+
+    db_module.set_db_path(str(path))
+    stats = db_module.semantic_stats()
+    assert (stats["n_chunks"], stats["n_indexed"], stats["n_total"]) == (4, 3, 5)
+    hits = db_module.search_semantic(_fake_vector(3), limit=5, model=FAKE_MODEL)
+    assert hits and hits[0]["chunk_id"] == "3#0" and hits[0]["id"] == "3"
+    assert hits[0]["headword"] == "HEINRICH" and hits[0]["volume"] == 3
+    assert hits[0]["snippet"].startswith("Heinrich, Bischof")
+    assert db_module.warm_semantic_index(FAKE_MODEL)["n_chunks"] == 4
+
+
+def test_the_snippet_starts_with_the_text_not_the_head(tmp_path):
+    """Fleet rule (ch-h-bot#555, eperiodica_mcp#10): the head line is for the
+    vector; the hit carries headword, volume and page as fields. Cut only the
+    head of this article, built by the same function that wrote it; offsets
+    are untouched because they never counted the head."""
+    import db as db_module
+
+    piece = "Dorf im Kanton Aargau,\nBezirk Kulm."
+    assert db_module.passage_body(f"GONTENSCHWIL 3\n{piece}", "GONTENSCHWIL", 3) == piece
+    assert db_module.passage_body(f"ZWINGLI  7\n{piece}", "ZWINGLI ", 7) == piece
+    # Another article's head, a head without the newline, or no head: untouched.
+    assert db_module.passage_body(f"GONTENSCHWIL 3\n{piece}", "GONTENSCHWIL", 4).startswith("GONT")
+    assert db_module.passage_body("GONTENSCHWIL 3 ist ein Dorf", "GONTENSCHWIL", 3) \
+        == "GONTENSCHWIL 3 ist ein Dorf"
+    assert db_module.passage_body(piece, "GONTENSCHWIL", 3) == piece
+    assert db_module.passage_body(piece, None, None) == piece
+
+    db, vector = _semantic_db(tmp_path)
+    hit = db.search_semantic(vector, limit=5, model="test-model")[0]
+    assert hit["snippet"] == "Dorf im Kanton Aargau, Bezirk Kulm."
+    assert (hit["char_start"], hit["char_end"]) == (0, 35)
+    assert hit["chunk_index"] == 0
+
+
+def test_year_filter_still_ranges_over_the_volume(tmp_path):
+    """year_from/year_to filter the volume number, as the NOTE in db.py says —
+    on purpose, in row_to_hit now (None drops the row)."""
+    db, vector = _semantic_db(tmp_path)
+
+    row = {"chunk_id": "1#0", "parent_id": "1", "chunk_index": 0, "char_start": 0,
+           "char_end": 35, "text": "x", "headword": "G", "volume": 3, "page": 86,
+           "pdf_url": "http://x"}
+    assert db.row_to_hit(row, "1#0", 0.9, year_from=3, year_to=3)["volume"] == 3
+    assert db.row_to_hit(row, "1#0", 0.9, year_from=4) is None
+    assert db.row_to_hit(row, "1#0", 0.9, year_to=2) is None
+    assert db.row_to_hit(dict(row, volume=None), "1#0", 0.9, year_from=1) is None
+    assert "year" not in db.row_to_hit(row, "1#0", 0.9)
+
+    assert db.search_semantic(vector, model="test-model", year_from=3, year_to=3)
+    assert db.search_semantic(vector, model="test-model", year_from=4) == []
+    assert db.search_semantic(vector, model="test-model", year_to=2) == []
+
+
+def test_the_shared_files_are_byte_identical_with_the_fleet():
+    """vectorstore.py and embed_db.py are vendored from eperiodica_mcp; a local
+    edit would make ch-h-bot's check_vendored_drift.py red."""
+    import pathlib
+
+    root = pathlib.Path(__file__).resolve().parent
+    digests = {name: hashlib.sha256((root / name).read_bytes()).hexdigest()[:12]
+               for name in ("embed_db.py", "vectorstore.py", "embeddings.py")}
+    assert digests == {"embed_db.py": "abd29cd4d258", "vectorstore.py": "333ffd50ec52",
+                       "embeddings.py": "dc7530503bb6"}
