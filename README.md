@@ -149,7 +149,7 @@ Starting HBLS MCP server on 0.0.0.0:8003/mcp/hbls/mcp
 | `HBLS_HOST` | `0.0.0.0` | Listen address |
 | `HBLS_PORT` | `8003` | Listen port |
 | `HBLS_HTTP_PATH` | `/mcp` | Path the MCP endpoint is served at |
-| `HBLS_EMBED_MODEL` | `qwen3-embedding-0.6b` | Embedding model, for queries and `embed_db.py` |
+| `HBLS_EMBED_MODEL` | `qwen3-embedding-4b` | Embedding model, for queries and `embed_db.py` |
 | `HBLS_CHUNK_CHARS` / `HBLS_CHUNK_OVERLAP` | `1000` / `150` | Passage window for `embed_db.py` |
 | `GPUSTACK_BASE_URL` / `GPUSTACK_API_KEY` | | Embedding service |
 
