@@ -21,7 +21,7 @@ services:
       # passage vectors are already in hbls.db.
       - GPUSTACK_BASE_URL=${GPUSTACK_BASE_URL:-https://gpustack.unibe.ch/v1}
       - GPUSTACK_API_KEY=${GPUSTACK_API_KEY:-}
-      - HBLS_EMBED_MODEL=${HBLS_EMBED_MODEL:-qwen3-embedding-0.6b}
+      - HBLS_EMBED_MODEL=${HBLS_EMBED_MODEL:-qwen3-embedding-4b}
     healthcheck:
       test: ["CMD", "python", "-c",
              "import socket; socket.create_connection(('localhost', 8003), 3).close()"]
