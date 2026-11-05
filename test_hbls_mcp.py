@@ -928,5 +928,6 @@ def test_the_shared_files_are_byte_identical_with_the_fleet():
     digests = {name: hashlib.sha256((root / name).read_bytes()).hexdigest()[:12]
                for name in ("embed_db.py", "vectorstore.py", "embeddings.py")}
     # 26.10.2026: default model qwen3-embedding-4b in both files (ch-h-bot#570).
-    assert digests == {"embed_db.py": "abd29cd4d258", "vectorstore.py": "adde376b0f75",
+    # 05.11.2026: vectorstore.py with the opt-in truncated search (ch-h-bot#594).
+    assert digests == {"embed_db.py": "abd29cd4d258", "vectorstore.py": "6248492e0628",
                        "embeddings.py": "b8d38be69cb1"}
