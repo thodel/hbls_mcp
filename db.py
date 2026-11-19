@@ -170,6 +170,34 @@ def _rows(rs) -> list[dict]:
     return [dict(r) for r in rs]
 
 
+# ── Columns the deployed database may lack ───────────────────────────────────
+#
+# SCHEMA_SQL declares articles.category (fam | bio | geo | tem) and
+# articles.lexical_class. The database on idhefix was built before either was
+# added and has neither (checked 19.11.2026: id, headword, volume, page,
+# snippet, article_text, pdf_url). #5 took them out of the semantic query; four
+# more queries still named them and failed on every call with
+# «no such column: category»: search_persons — which the Swiss History Bot
+# uses —, search_bio, get_articles_by_category and get_category_stats. The data
+# cannot be recovered from what is deployed, so the queries ask which columns
+# are there: search_persons returns category as null, and the three category
+# tools say plainly that this database carries no categories.
+
+NO_CATEGORIES = (
+    "This HBLS database carries no article categories (fam, bio, geo, tem): it "
+    "was built before they were added. Use search_persons or search instead."
+)
+
+
+def _article_columns(c) -> set[str]:
+    return {r[1] for r in c.execute("PRAGMA table_info(articles)")}
+
+
+def _col(columns: set[str], name: str) -> str:
+    """`a.<name>`, or NULL under the same name when the column is absent."""
+    return f"a.{name}" if name in columns else f"NULL AS {name}"
+
+
 def clamp(limit, default, cap=MAX_LIMIT) -> int:
     """Constrain a caller-supplied limit. SQLite reads LIMIT -1 as unbounded, so an
     unchecked negative value would return the whole table — and min(limit, 200),
@@ -364,7 +392,8 @@ def get_family_members(headword: str, volume: int) -> list[dict]:
 def search_persons(query: str, limit: int = 50) -> list[dict]:
     """Search all persons by forename OR family name (headword)."""
     with conn() as c:
-        rows = c.execute("""
+        category = _col(_article_columns(c), "category")
+        rows = c.execute(f"""
             SELECT m.given          AS forename,
                    m.birth_year,
                    m.death_year,
@@ -373,7 +402,7 @@ def search_persons(query: str, limit: int = 50) -> list[dict]:
                    a.volume,
                    a.page,
                    a.pdf_url,
-                   a.category
+                   {category}
             FROM members m
             JOIN articles a ON a.id = m.article_id
             WHERE m.given LIKE ?1 ESCAPE '\\' OR a.headword LIKE ?1 ESCAPE '\\'
@@ -386,7 +415,11 @@ def search_persons(query: str, limit: int = 50) -> list[dict]:
 def search_bio(query: str, limit: int = 50) -> list[dict]:
     """Search persons in bio articles only — family name + forename."""
     with conn() as c:
-        rows = c.execute("""
+        columns = _article_columns(c)
+        if "category" not in columns:
+            return [{"error": NO_CATEGORIES, "not_found": False}]
+        lexical_class = _col(columns, "lexical_class")
+        rows = c.execute(f"""
             SELECT m.given          AS forename,
                    m.birth_year,
                    m.death_year,
@@ -394,7 +427,7 @@ def search_bio(query: str, limit: int = 50) -> list[dict]:
                    a.volume,
                    a.page,
                    a.pdf_url,
-                   a.lexical_class
+                   {lexical_class}
             FROM members m
             JOIN articles a ON a.id = m.article_id
             WHERE a.category = 'bio'
@@ -427,10 +460,14 @@ def get_articles_by_category(
     volume: optional filter to a specific volume
     """
     with conn() as c:
+        columns = _article_columns(c)
+        if "category" not in columns:
+            return [{"error": NO_CATEGORIES, "not_found": False}]
+        lexical_class = _col(columns, "lexical_class")
         if volume is not None:
-            rows = c.execute("""
+            rows = c.execute(f"""
                 SELECT a.id, a.headword, a.volume, a.page, a.snippet, a.pdf_url,
-                       a.category, a.lexical_class,
+                       a.category, {lexical_class},
                        (SELECT COUNT(*) FROM members m WHERE m.article_id = a.id) AS n_members
                 FROM articles a
                 WHERE a.category = ? AND a.volume = ?
@@ -438,9 +475,9 @@ def get_articles_by_category(
                 LIMIT ? OFFSET ?
             """, (category, volume, clamp(limit, 100), clamp_offset(offset))).fetchall()
         else:
-            rows = c.execute("""
+            rows = c.execute(f"""
                 SELECT a.id, a.headword, a.volume, a.page, a.snippet, a.pdf_url,
-                       a.category, a.lexical_class,
+                       a.category, {lexical_class},
                        (SELECT COUNT(*) FROM members m WHERE m.article_id = a.id) AS n_members
                 FROM articles a
                 WHERE a.category = ?
@@ -453,6 +490,13 @@ def get_articles_by_category(
 def get_category_stats(volume: int | None = None) -> dict:
     """Return article counts by category, optionally filtered by volume."""
     with conn() as c:
+        if "category" not in _article_columns(c):
+            if volume is not None:
+                total = c.execute("SELECT COUNT(*) FROM articles WHERE volume = ?",
+                                  (volume,)).fetchone()[0]
+            else:
+                total = c.execute("SELECT COUNT(*) FROM articles").fetchone()[0]
+            return {"error": NO_CATEGORIES, "not_found": False, "_total": total}
         if volume is not None:
             rows = c.execute("""
                 SELECT category, COUNT(*) as n

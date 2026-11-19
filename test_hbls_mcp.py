@@ -931,3 +931,59 @@ def test_the_shared_files_are_byte_identical_with_the_fleet():
     # 05.11.2026: vectorstore.py with the opt-in truncated search (ch-h-bot#594).
     assert digests == {"embed_db.py": "abd29cd4d258", "vectorstore.py": "6248492e0628",
                        "embeddings.py": "b8d38be69cb1"}
+
+
+# ── The deployed database has no categories (19.11.2026) ──────────────────────
+# SCHEMA_SQL declares articles.category and articles.lexical_class; the database
+# on idhefix has neither. search_persons — a tool the Swiss History Bot calls —,
+# search_bio, get_articles_by_category and get_category_stats named them anyway
+# and failed on every call with «no such column: category». These tests build
+# the schema that is actually deployed and call the four tools on it.
+
+DEPLOYED_ARTICLE_COLUMNS = ["id", "headword", "volume", "page", "snippet",
+                            "article_text", "pdf_url"]
+
+
+def make_deployed_db(path):
+    """The fixture with the article table as deployed: no category, no lexical_class."""
+    import re
+
+    import db as db_module
+    schema = re.sub(r",\s*category\s+TEXT,\s*lexical_class\s+TEXT", "", db_module.SCHEMA_SQL)
+    schema = re.sub(r"CREATE INDEX IF NOT EXISTS ix_articles_category[^;]*;", "", schema)
+    con = sqlite3.connect(path)
+    con.executescript(schema)
+    assert [r[1] for r in con.execute("PRAGMA table_info(articles)")] == DEPLOYED_ARTICLE_COLUMNS
+    con.executemany(f"INSERT INTO articles VALUES ({','.join('?' * 7)})",
+                    [a[:7] for a in ARTICLES])
+    con.executemany(f"INSERT INTO members VALUES ({','.join('?' * 6)})", MEMBERS)
+    con.commit(); con.close()
+    db_module.set_db_path(path)
+    return db_module
+
+
+def test_search_persons_answers_on_the_deployed_database(tmp_path):
+    db = make_deployed_db(str(tmp_path / "deployed.db"))
+    hits = db.search_persons("Zwingli")
+    assert {h["forename"] for h in hits} == {"Ulrich", "Huldrych"}
+    assert all(h["category"] is None for h in hits)   # same shape, honest value
+
+
+def test_the_category_tools_say_why_on_the_deployed_database(tmp_path):
+    db = make_deployed_db(str(tmp_path / "deployed.db"))
+    for answer in (db.search_bio("Zwingli"), db.get_articles_by_category("bio"),
+                   db.get_articles_by_category("bio", volume=6)):
+        assert answer == [{"error": db.NO_CATEGORIES, "not_found": False}]
+    stats = db.get_category_stats()
+    assert stats == {"error": db.NO_CATEGORIES, "not_found": False, "_total": 4}
+    assert db.get_category_stats(volume=6)["_total"] == 2
+
+
+def test_with_categories_the_tools_still_use_them(tmp_path):
+    """The full schema keeps working as before: the guard only opens on absence."""
+    db = make_fixture_db(str(tmp_path / "full.db"))
+    assert {h["category"] for h in db.search_persons("Zwingli")} == {"fam"}
+    assert [a["headword"] for a in db.get_articles_by_category("bio")] == ["SICHER 100%", "HANS_MEIER"]
+    assert db.get_category_stats() == {"bio": 2, "fam": 1, "geo": 1, "_total": 4}
+    bio = db.search_bio("Hans")
+    assert [b["family_name"] for b in bio] == ["HANS_MEIER"] and bio[0]["lexical_class"] == "Test"
