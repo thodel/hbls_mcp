@@ -1,0 +1,130 @@
+{
+ "volume": 4,
+ "pdf_page": 70,
+ "printed_page": 60,
+ "running_head": "HALLER HALLER",
+ "articles": [
+  {
+   "headword": "HALLER",
+   "continued": true,
+   "type": "fam",
+   "end": null,
+   "branches": [],
+   "members": [
+    {
+     "branch": "B.III",
+     "nr": 11,
+     "name": "Samuel",
+     "birth": 1721,
+     "death": null
+    },
+    {
+     "branch": "B.III",
+     "nr": 12,
+     "name": "Joh. Jakob",
+     "birth": 1729,
+     "death": 1809
+    },
+    {
+     "branch": "B.III",
+     "nr": null,
+     "name": "Nikl. Rud.",
+     "birth": 1751,
+     "death": 1806
+    },
+    {
+     "branch": "B.III",
+     "nr": 13,
+     "name": "Franz Ludwig",
+     "birth": 1755,
+     "death": 1838
+    },
+    {
+     "branch": "B.III",
+     "nr": null,
+     "name": "Anton Emanuel",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": "B.III",
+     "nr": 14,
+     "name": "Karl Gabriel",
+     "birth": 1766,
+     "death": 1814
+    },
+    {
+     "branch": "B.III",
+     "nr": 15,
+     "name": "Armand Em. Albrecht",
+     "birth": 1801,
+     "death": 1834
+    },
+    {
+     "branch": "B.III",
+     "nr": null,
+     "name": "Ludwig Albrecht",
+     "birth": 1773,
+     "death": 1837
+    },
+    {
+     "branch": "B.III",
+     "nr": 16,
+     "name": "Jak. Em. Franz",
+     "birth": 1802,
+     "death": 1863
+    },
+    {
+     "branch": "B.III",
+     "nr": 17,
+     "name": "Bernhard Friedrich",
+     "birth": 1804,
+     "death": 1871
+    },
+    {
+     "branch": "B.III",
+     "nr": 18,
+     "name": "Albert Friedrich",
+     "birth": 1813,
+     "death": 1882
+    },
+    {
+     "branch": "B.III",
+     "nr": 19,
+     "name": "Berchtold Gottl. Emanuel",
+     "birth": 1837,
+     "death": 1903
+    },
+    {
+     "branch": "B.III",
+     "nr": 20,
+     "name": "David Albert",
+     "birth": 1846,
+     "death": null
+    },
+    {
+     "branch": "B.III",
+     "nr": 21,
+     "name": "Robert Friedrich",
+     "birth": 1874,
+     "death": null
+    },
+    {
+     "branch": "B.III",
+     "nr": 22,
+     "name": "Lilli",
+     "birth": 1874,
+     "death": null
+    },
+    {
+     "branch": "B.III",
+     "nr": 23,
+     "name": "Max",
+     "birth": 1879,
+     "death": null
+    }
+   ]
+  }
+ ],
+ "cer_region": "c2b"
+}

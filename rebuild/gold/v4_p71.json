@@ -1,0 +1,197 @@
+{
+ "volume": 4,
+ "pdf_page": 71,
+ "printed_page": 61,
+ "running_head": "HALLER HALLER",
+ "articles": [
+  {
+   "headword": "HALLER",
+   "continued": true,
+   "type": "fam",
+   "end": null,
+   "branches": [
+    {
+     "label": "C",
+     "name": "Kanton St. Gallen"
+    },
+    {
+     "label": "C.I",
+     "name": ""
+    },
+    {
+     "label": "C.II",
+     "name": ""
+    },
+    {
+     "label": "D",
+     "name": "Kanton Zürich"
+    },
+    {
+     "label": "D.I",
+     "name": "Altes Geschlecht der Stadt Zürich"
+    },
+    {
+     "label": "D.II",
+     "name": "Geschlecht aus Wil (St. Gallen)"
+    }
+   ],
+   "members": [
+    {
+     "branch": "B.III",
+     "nr": 24,
+     "name": "Gottlieb Emanuel",
+     "birth": 1735,
+     "death": 1786
+    },
+    {
+     "branch": "B.III",
+     "nr": 25,
+     "name": "Rudolf Emanuel",
+     "birth": 1747,
+     "death": 1833
+    },
+    {
+     "branch": "B.III",
+     "nr": 26,
+     "name": "Albrecht",
+     "birth": 1758,
+     "death": 1823
+    },
+    {
+     "branch": "B.III",
+     "nr": "26a",
+     "name": "Albert Emanuel",
+     "birth": 1765,
+     "death": 1831
+    },
+    {
+     "branch": "B.III",
+     "nr": 27,
+     "name": "Karl Ludwig",
+     "birth": 1768,
+     "death": 1854
+    },
+    {
+     "branch": "B.III",
+     "nr": 28,
+     "name": "Karl Ludwig",
+     "birth": 1807,
+     "death": 1893
+    },
+    {
+     "branch": "B.III",
+     "nr": 29,
+     "name": "Albert",
+     "birth": 1808,
+     "death": 1858
+    },
+    {
+     "branch": "B.III",
+     "nr": 30,
+     "name": "Paul Albert",
+     "birth": 1842,
+     "death": 1916
+    },
+    {
+     "branch": "B.III",
+     "nr": 31,
+     "name": "Charles",
+     "birth": 1869,
+     "death": null
+    },
+    {
+     "branch": "B.III",
+     "nr": 32,
+     "name": "Albert",
+     "birth": 1872,
+     "death": null
+    },
+    {
+     "branch": "B.III",
+     "nr": 33,
+     "name": "Rodolphe",
+     "birth": 1874,
+     "death": null
+    },
+    {
+     "branch": "B.III",
+     "nr": 34,
+     "name": "Berthold",
+     "birth": 1878,
+     "death": null
+    },
+    {
+     "branch": "C.I",
+     "nr": 1,
+     "name": "Paul",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": "C.I",
+     "nr": 2,
+     "name": "Paulus",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": "C.II",
+     "nr": 3,
+     "name": "Konrad",
+     "birth": null,
+     "death": 1525
+    },
+    {
+     "branch": "C.II",
+     "nr": null,
+     "name": "Hans",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": "C.II",
+     "nr": 4,
+     "name": "Hans",
+     "birth": 1487,
+     "death": null
+    },
+    {
+     "branch": "C.II",
+     "nr": 5,
+     "name": "Hans Jakob",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": "C.II",
+     "nr": 6,
+     "name": "Anton",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": "D.II",
+     "nr": 1,
+     "name": "Hans (Johannes)",
+     "birth": 1487,
+     "death": 1531
+    },
+    {
+     "branch": "D.II",
+     "nr": 2,
+     "name": "Johannes",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": "D.II",
+     "nr": 3,
+     "name": "Wolfgang",
+     "birth": 1525,
+     "death": 1601
+    }
+   ]
+  }
+ ],
+ "cer_region": "c1b"
+}

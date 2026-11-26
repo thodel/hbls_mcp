@@ -1,0 +1,91 @@
+{
+ "volume": 5,
+ "pdf_page": 169,
+ "printed_page": 159,
+ "running_head": "MORBIO SUPERIORE MORDASINI",
+ "articles": [
+  {
+   "headword": "MORBIO INFERIORE",
+   "continued": true,
+   "type": "geo",
+   "end": "dei Miracoli. — BStor. 1895. [C. TREZZINI.]"
+  },
+  {
+   "headword": "MORBIO SUPERIORE",
+   "continued": false,
+   "type": "geo",
+   "start": "MORBIO SUPERIORE (Kt. Tessin, Bez. Mendrisio. S. GLS).",
+   "end": "Memorie storiche. — BStor. 1904. [C. T.]"
+  },
+  {
+   "headword": "MORCOTE",
+   "continued": false,
+   "type": "geo",
+   "start": "MORCOTE (Kt. Tessin, Bez. Lugano. S. GLS). Gem. und Pfarrei.",
+   "end": "Miscellanea storica. [C. TREZZINI.]"
+  },
+  {
+   "headword": "MORCOTE",
+   "continued": false,
+   "type": "fam",
+   "start": "MORCOTE. Mehrere Tessiner Künstler sind nur unter dem",
+   "end": "la scultura a Venezia. [C. T.]",
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": 1,
+     "name": "Zuan",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 2,
+     "name": "Giovanni",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Lorenzo",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 3,
+     "name": "Angelo",
+     "birth": null,
+     "death": null
+    }
+   ]
+  },
+  {
+   "headword": "MORDAGNE",
+   "continued": false,
+   "type": "geo",
+   "start": "MORDAGNE (Kt. Waadt, Bez. Yverdon, Gem. Yvonand. S. GLS).",
+   "end": "Vergl. Art. YVONAND. — DHV. [M. R.]"
+  },
+  {
+   "headword": "MORDASINI",
+   "continued": false,
+   "type": "fam",
+   "start": "MORDASINI. Familie von Comologno (Tessin). — 1. PAOLO,",
+   "end": null,
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": 1,
+     "name": "Paolo",
+     "birth": 1830,
+     "death": 1882
+    }
+   ]
+  }
+ ],
+ "cer_region": "c2b"
+}

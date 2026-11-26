@@ -1,0 +1,115 @@
+{
+ "volume": 4,
+ "pdf_page": 663,
+ "printed_page": 653,
+ "running_head": "LENGWEILER LENTIGNY",
+ "articles": [
+  {
+   "headword": "LENGNAU",
+   "continued": true,
+   "type": "geo",
+   "start": null,
+   "end": "H. Merz in BBG 1923, p. 206 ff. [H. Tr.]"
+  },
+  {
+   "headword": "LENGWEILER",
+   "continued": false,
+   "type": "fam",
+   "start": "LENGWEILER. Zwei Familien der Stadt St. Gallen, ei",
+   "end": "Gemeinderates seit 1918. — Bürgerbuch 1920. [Bt.]",
+   "members": [
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Johann Jakob Robert",
+     "birth": 1871,
+     "death": null
+    }
+   ]
+  },
+  {
+   "headword": "LENHERR, LEHENHERR",
+   "continued": false,
+   "type": "fam",
+   "start": "LENHERR, LEHENHERR. Geschlecht der Gem. Gams (Kt.",
+   "end": "Rich. Senti : Domkustos Titus L. [J. M.]",
+   "members": [
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Ulrich",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Titus",
+     "birth": 1864,
+     "death": 1927
+    }
+   ]
+  },
+  {
+   "headword": "LENIEPS",
+   "continued": false,
+   "type": "fam",
+   "start": "LENIEPS. Familie aus Burgund, die sich 1579 in Gen",
+   "end": "1768 in der Bastille in Haft gehalten. [A. Corbaz.]",
+   "members": [
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Toussaint Pierre",
+     "birth": 1697,
+     "death": 1774
+    }
+   ]
+  },
+  {
+   "headword": "LENIN",
+   "continued": false,
+   "type": "bio",
+   "start": "LENIN, WLADIMIR ILJITSCH ULIANOW, genannt L., russ",
+   "end": "Die Reise L's durch Deutschland. [E. Dejung.]"
+  },
+  {
+   "headword": "LENK",
+   "continued": false,
+   "type": "geo",
+   "start": "LENK (Kt. Bern, Amtsbez. Obersimmental. S. GLS). P",
+   "end": "H. Allemann in BBG 13, p. 72 ff. [H. A.]"
+  },
+  {
+   "headword": "LENOIR",
+   "continued": false,
+   "type": "fam",
+   "start": "LENOIR. Familie von Château d'Œx (Kt. Waadt) seit",
+   "end": "vom Staate getrennt werden wird. [M. R.]",
+   "members": [
+    {
+     "branch": null,
+     "nr": 1,
+     "name": "Samuel",
+     "birth": 1839,
+     "death": 1907
+    }
+   ]
+  },
+  {
+   "headword": "LENS",
+   "continued": false,
+   "type": "geo",
+   "start": "LENS (Kt. Wallis, Bez. Siders. S. GLS). Gem., die",
+   "end": "Chartes sédunoises. — Ortsarchiv. [Ta.]"
+  },
+  {
+   "headword": "LENTIGNY",
+   "continued": false,
+   "type": "geo",
+   "start": "LENTIGNY (Kt. Freiburg, Bez. Saane. S. GLS). Kirch",
+   "end": null
+  }
+ ],
+ "cer_region": "c1a"
+}

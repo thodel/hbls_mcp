@@ -1,0 +1,117 @@
+{
+ "volume": 3,
+ "pdf_page": 248,
+ "printed_page": 238,
+ "running_head": "FRAUENFELD FRAUENFRAGE",
+ "articles": [
+  {
+   "headword": "FRAUENFELD",
+   "continued": true,
+   "type": "fam",
+   "end": "Mitt. von A. Corrodi-Sulzer. [F. HEGI.]",
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": 4,
+     "name": "Niklaus",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 5,
+     "name": "Heinrich",
+     "birth": null,
+     "death": null
+    }
+   ]
+  },
+  {
+   "headword": "FRAUENFELD, VON",
+   "continued": false,
+   "type": "fam",
+   "start": "FRAUENFELD, von. Zweig des kiburgischen Ministerialengeschlechts",
+   "end": "Wohnsitz des jeweiligen Landvogts. [SCH.]",
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": 1,
+     "name": "Jakob",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 2,
+     "name": "Nikolaus",
+     "birth": 1277,
+     "death": 1344
+    },
+    {
+     "branch": null,
+     "nr": 3,
+     "name": "Johannes",
+     "birth": null,
+     "death": null
+    }
+   ]
+  },
+  {
+   "headword": "FRAUENFELDER",
+   "continued": false,
+   "type": "fam",
+   "start": "FRAUENFELDER. Familie der Kte. Schaffhausen und Zürich.",
+   "end": "† 20. XII. 1896. — Vergl. SKL. [L. FORRER.]",
+   "branches": [
+    {
+     "label": "A",
+     "name": "Kanton Schaffhausen"
+    },
+    {
+     "label": "B",
+     "name": "Kanton Zürich"
+    }
+   ],
+   "members": [
+    {
+     "branch": "A",
+     "nr": null,
+     "name": "Johannes",
+     "birth": 1795,
+     "death": 1878
+    },
+    {
+     "branch": "A",
+     "nr": 1,
+     "name": "Eduard",
+     "birth": 1836,
+     "death": 1917
+    },
+    {
+     "branch": "A",
+     "nr": 2,
+     "name": "Emil",
+     "birth": 1850,
+     "death": null
+    },
+    {
+     "branch": "B",
+     "nr": null,
+     "name": "Hans Konrad",
+     "birth": 1822,
+     "death": 1896
+    }
+   ]
+  },
+  {
+   "headword": "FRAUENFRAGE",
+   "continued": false,
+   "type": "tem",
+   "start": "FRAUENFRAGE. In der Schweiz wurde die F. später aufgeworfen",
+   "end": null
+  }
+ ],
+ "cer_region": "c2b"
+}

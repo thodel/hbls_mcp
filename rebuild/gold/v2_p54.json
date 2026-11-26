@@ -1,0 +1,212 @@
+{
+ "volume": 2,
+ "pdf_page": 54,
+ "printed_page": 42,
+ "running_head": "BASSEY BASTARD",
+ "articles": [
+  {
+   "headword": "BASSET",
+   "continued": true,
+   "type": "fam",
+   "end": "auch von König Ferdinand bestätigt. [M. GODET.]",
+   "branches": [],
+   "members": []
+  },
+  {
+   "headword": "BASSEY",
+   "continued": false,
+   "type": "geo",
+   "start": "BASSEY (Kt. Wallis, Bez. St. Maurice. S. GLS).",
+   "end": "Hoppeler : Beiträge. [TA.]"
+  },
+  {
+   "headword": "BASSI",
+   "continued": false,
+   "type": "fam",
+   "start": "BASSI. Altes Geschlecht aus der Leventina, der",
+   "end": "BStor. 1891, 1893, 1904. [C. TREZZINI.]",
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": 1,
+     "name": "Fabiano",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 2,
+     "name": "Giacomo",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 3,
+     "name": "Angelo",
+     "birth": null,
+     "death": 1846
+    }
+   ]
+  },
+  {
+   "headword": "BASSINS",
+   "continued": false,
+   "type": "geo",
+   "start": "BASSINS (Kt. Waadt, Bez. Nyon. S. GLS). 1876 wurde",
+   "end": "1878 restauriert. — Vergl. DHV. [M. R.]"
+  },
+  {
+   "headword": "BASSO, BASSUS",
+   "continued": false,
+   "type": "fam",
+   "start": "BASSO, BASSUS. Familie aus Puschlav (Graubünden),",
+   "end": "Borrani : Ticino Sacro. [C.T.]",
+   "branches": [
+    {
+     "label": "A",
+     "name": "Kanton Graubünden"
+    },
+    {
+     "label": "B",
+     "name": "Kanton Tessin"
+    }
+   ],
+   "members": [
+    {
+     "branch": "A",
+     "nr": 1,
+     "name": "Antonio",
+     "birth": null,
+     "death": 1620
+    },
+    {
+     "branch": "A",
+     "nr": 2,
+     "name": "Thomas Franz Maria",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": "B",
+     "nr": null,
+     "name": "Giovanni",
+     "birth": 1550,
+     "death": 1629
+    }
+   ]
+  },
+  {
+   "headword": "BASSO",
+   "continued": false,
+   "type": "bio",
+   "start": "BASSO, GIUSEPPE, * 26. XI. 1848 in Rom, † 30. IV.",
+   "end": "ebenfalls Minister in Portugal. [† O. K.]"
+  },
+  {
+   "headword": "BASSOMPIERRE",
+   "continued": false,
+   "type": "bio",
+   "start": "BASSOMPIERRE, FRANÇOIS, Baron von, Marquis von Ha",
+   "end": "Schweiz 1625-1626 (im JSG 1913). [A. R.]"
+  },
+  {
+   "headword": "BASSUS",
+   "continued": false,
+   "type": "verweis",
+   "start": "BASSUS. Familie. Siehe BASSO.",
+   "end": "BASSUS. Familie. Siehe BASSO."
+  },
+  {
+   "headword": "BASTARD, BASTHARDT",
+   "continued": false,
+   "type": "fam",
+   "start": "BASTARD, BASTHARDT. Familien aus den Kantonen St.",
+   "end": null,
+   "branches": [
+    {
+     "label": "A",
+     "name": "Kanton St. Gallen"
+    },
+    {
+     "label": "B",
+     "name": "Kanton Genf"
+    }
+   ],
+   "members": [
+    {
+     "branch": "A",
+     "nr": 1,
+     "name": "Michael",
+     "birth": null,
+     "death": 1531
+    },
+    {
+     "branch": "A",
+     "nr": 2,
+     "name": "Jakob",
+     "birth": 1530,
+     "death": 1606
+    },
+    {
+     "branch": "A",
+     "nr": 3,
+     "name": "Leonhard",
+     "birth": 1544,
+     "death": 1613
+    },
+    {
+     "branch": "A",
+     "nr": 4,
+     "name": "Johannes",
+     "birth": null,
+     "death": 1653
+    },
+    {
+     "branch": "A",
+     "nr": 5,
+     "name": "Georg",
+     "birth": null,
+     "death": 1659
+    },
+    {
+     "branch": "A",
+     "nr": 6,
+     "name": "Georg",
+     "birth": null,
+     "death": 1715
+    },
+    {
+     "branch": "A",
+     "nr": 7,
+     "name": "Johannes",
+     "birth": null,
+     "death": 1778
+    },
+    {
+     "branch": "B",
+     "nr": 1,
+     "name": "Jacques",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": "B",
+     "nr": 2,
+     "name": "François Louis",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": "B",
+     "nr": 3,
+     "name": "Marc Auguste",
+     "birth": 1863,
+     "death": null
+    }
+   ]
+  }
+ ],
+ "cer_region": "c1a"
+}

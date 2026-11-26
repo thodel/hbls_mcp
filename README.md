@@ -38,13 +38,14 @@ without a `type` is read as a stdio server and skipped.
 
 | Tool | Description |
 |------|-------------|
-| `corpus_stats` | Corpus summary: article/member counts, text size, volumes |
+| `corpus_stats` | Corpus summary: article/member counts, text size, volumes, `data_version` |
 | `search` | FTS5 full-text search across headwords + article text |
 | `get_article` | Full article by headword + volume |
 | `get_article_by_page` | Article at a given volume + page |
 | `list_volume` | Paginated list of all articles in a volume |
 | `get_family_members` | All persons listed under a family article |
-| `search_persons` | Search persons by forename or family name |
+| `search_persons` | Search persons by forename or family name, or both ("Peter Kistler", "Kistler, Peter") |
+| `get_member` | One family member by stable id: years, branch, offices, kinship, passage (rebuilt database) |
 | `search_bio` | Search biographies only (bio category) |
 | `get_pdf_url` | Direct PDF URL for headword/volume/page |
 | `get_articles_by_category` | List articles by category (fam/bio/geo/tem) |
@@ -65,6 +66,16 @@ The server expects the SQLite database at `/data/hbls.db` inside the container.
 Mount the host directory containing `hbls.db` to `/data`. `db.SCHEMA_SQL` holds the
 schema the server expects — the contract between the build pipeline and this server,
 and what the tests build their fixtures from.
+
+### Rebuilt database
+
+`rebuild/` builds the database anew from the page images (OCR with qwen3.8, articles cut from the
+markup, families structured into branches and members) — see [rebuild/README.md](rebuild/README.md),
+with the gold-standard figures before and after. It keeps every table and column above and adds
+`articles.stable_id`/`pdf_page`/`printed_page`/`type`, `members.stable_id`/`branch_label`/`epithet`/
+`offices`/`kin`/`text_start`/`text_end`, the tables `branches`, `page_texts` and `meta`. The server reads
+both: on the database built from the text layer `corpus_stats` reports `data_version`
+`2025.07-textlayer` and `get_member` says it has no ids.
 
 ## Semantic index
 
@@ -187,7 +198,7 @@ on.
 
 ```bash
 pip install pytest
-pytest test_hbls_mcp.py
+pytest test_hbls_mcp.py test_rebuild.py
 ```
 
 Unit tests build their own throwaway database and need no setup. DB and server tests

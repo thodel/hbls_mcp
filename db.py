@@ -6,6 +6,7 @@ db.py — SQLite query helpers for HBLS MCP server.
 # could not be imported on 3.9 at all — including by its own tests.
 from __future__ import annotations
 
+import json
 import re
 import sqlite3
 from contextlib import contextmanager
@@ -251,7 +252,31 @@ def db_stats() -> dict[str, Any]:
             "text_chars":      txt_chars,
             "text_mb":         round(txt_chars / 1e6, 1),
             "volumes":         dict(vol_cnts),
+            **_meta(c),
         }
+
+
+def _tables(c) -> set[str]:
+    return {r[0] for r in c.execute("SELECT name FROM sqlite_master WHERE type='table'")}
+
+
+def _member_columns(c) -> set[str]:
+    return {r[1] for r in c.execute("PRAGMA table_info(members)")}
+
+
+def _meta(c) -> dict[str, Any]:
+    """Data version and build facts of a rebuilt database (rebuild/build.py); the database built
+    from the DigiBern text layer has no meta table and reports itself as such."""
+    if "meta" not in _tables(c):
+        return {"data_version": "2025.07-textlayer",
+                "data_note": "Built from the DigiBern text layer: letter-spaced names, missing members."}
+    out = {r[0]: r[1] for r in c.execute("SELECT key, value FROM meta")}
+    if "counts" in out:
+        try:
+            out["counts"] = json.loads(out["counts"])
+        except ValueError:
+            pass
+    return out
 
 
 # ── Article queries ───────────────────────────────────────────────────────────
@@ -375,25 +400,88 @@ def volume_index(volume: int, limit: int = VOLUME_INDEX_LIMIT) -> dict:
 
 # ── Member/person queries ──────────────────────────────────────────────────────
 
+_MEMBER_EXTRA = ("stable_id", "branch_label", "epithet", "offices", "kin", "source", "review")
+
+
+def _member_select(c, alias: str = "m") -> str:
+    cols = _member_columns(c)
+    return ", ".join(f"{alias}.{x}" if x in cols else f"NULL AS {x}" for x in _MEMBER_EXTRA)
+
+
+def _decode(row: dict) -> dict:
+    for k in ("offices", "kin", "review"):
+        if isinstance(row.get(k), str):
+            try:
+                row[k] = json.loads(row[k])
+            except ValueError:
+                pass
+    # the rebuilt columns only where they carry something; the old ones always, in the old shape
+    return {k: v for k, v in row.items() if v is not None or k not in _MEMBER_EXTRA}
+
+
 def get_family_members(headword: str, volume: int) -> list[dict]:
     with conn() as c:
-        rows = c.execute("""
-            SELECT m.given, m.birth_year, m.death_year, m.member_n,
+        rows = c.execute(f"""
+            SELECT m.given, m.birth_year, m.death_year, m.member_n, {_member_select(c)},
                    a.headword, a.volume, a.page, a.pdf_url
             FROM members m
             JOIN articles a ON a.id = m.article_id
-            WHERE a.headword=? AND a.volume=?
-            ORDER BY m.member_n
+            WHERE a.headword = ? COLLATE NOCASE AND a.volume = ?
+            ORDER BY a.id, m.id
             LIMIT ?
         """, (headword, volume, MAX_LIMIT)).fetchall()
-    return _rows(rows)
+    return [_decode(dict(r)) for r in rows]
+
+
+def get_member(member_id: str) -> dict | None:
+    """One member of a rebuilt database by its stable id ("hbls-4-510-KISTLER#u4"), with
+    branch, offices, kinship and the passage of the article that is about this person."""
+    with conn() as c:
+        if "stable_id" not in _member_columns(c):
+            return {"error": "This HBLS database has no member ids (built before the rebuild).",
+                    "not_found": False}
+        r = c.execute(f"""
+            SELECT m.given, m.birth_year, m.death_year, m.member_n, {_member_select(c)},
+                   m.text_start, m.text_end, a.article_text, a.stable_id AS article_id,
+                   a.headword, a.volume, a.page, a.pdf_url,
+                   b.name AS branch_name, b.place AS branch_place, b.canton AS branch_canton
+            FROM members m
+            JOIN articles a ON a.id = m.article_id
+            LEFT JOIN branches b ON b.id = m.branch_id
+            WHERE m.stable_id = ?
+        """, (member_id,)).fetchone()
+        if not r:
+            return None
+        d = dict(r)
+        text, s, e = d.pop("article_text") or "", d.pop("text_start"), d.pop("text_end")
+        if s is not None:
+            d["passage"] = text[s:e if e is not None and e - s <= 4000 else s + 4000].strip()
+        return _decode(d)
+
+
+def _name_splits(query: str) -> list[tuple[str, str]]:
+    """(forename, family) readings of a query of several words: "Peter Kistler",
+    "Kistler Peter", "Kistler, Peter", "Hans Jakob von Erlach"."""
+    q = (query or "").strip()
+    if "," in q:
+        fam, given = (x.strip() for x in q.split(",", 1))
+        return [(given, fam)] if given and fam else []
+    words = q.split()
+    out = []
+    for i in range(1, len(words)):
+        out.append((" ".join(words[:i]), " ".join(words[i:])))
+        out.append((" ".join(words[i:]), " ".join(words[:i])))
+    return out
 
 
 def search_persons(query: str, limit: int = 50) -> list[dict]:
-    """Search all persons by forename OR family name (headword)."""
+    """Search persons by forename OR family name (headword) — or both: a query of several
+    words ("Peter Kistler", "Kistler, Peter") finds the members of that family with that forename."""
+    limit = clamp(limit, 50)
     with conn() as c:
-        category = _col(_article_columns(c), "category")
-        rows = c.execute(f"""
+        columns = _article_columns(c)
+        category = _col(columns, "category")
+        select = f"""
             SELECT m.given          AS forename,
                    m.birth_year,
                    m.death_year,
@@ -402,14 +490,30 @@ def search_persons(query: str, limit: int = 50) -> list[dict]:
                    a.volume,
                    a.page,
                    a.pdf_url,
-                   {category}
+                   {category}, {_member_select(c)}
             FROM members m
             JOIN articles a ON a.id = m.article_id
-            WHERE m.given LIKE ?1 ESCAPE '\\' OR a.headword LIKE ?1 ESCAPE '\\'
-            ORDER BY a.headword, m.given
-            LIMIT ?2
-        """, (like_pattern(query), clamp(limit, 50))).fetchall()
-    return _rows(rows)
+        """
+        rows = []
+        for given, fam in _name_splits(query):
+            rows += c.execute(select + """
+                WHERE m.given LIKE ? ESCAPE '\\' AND a.headword LIKE ? ESCAPE '\\'
+                ORDER BY a.headword, m.id LIMIT ?
+            """, (like_pattern(given)[1:], like_pattern(fam.upper())[1:], limit)).fetchall()
+        if not rows:
+            rows = c.execute(select + """
+                WHERE m.given LIKE ? ESCAPE '\\' OR a.headword LIKE ? ESCAPE '\\'
+                ORDER BY a.headword, m.given
+                LIMIT ?
+            """, (like_pattern(query), like_pattern(query), limit)).fetchall()
+    seen, out = set(), []
+    for r in rows:
+        d = _decode(dict(r))
+        k = (d["family_name"], d["volume"], d.get("stable_id") or (d["forename"], d["member_n"], d["page"]))
+        if k not in seen:
+            seen.add(k)
+            out.append(d)
+    return out[:limit]
 
 
 def search_bio(query: str, limit: int = 50) -> list[dict]:

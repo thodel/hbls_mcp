@@ -1,0 +1,81 @@
+{
+ "volume": 4,
+ "pdf_page": 69,
+ "printed_page": 59,
+ "running_head": "HALLER HALLER",
+ "articles": [
+  {
+   "headword": "HALLER",
+   "continued": true,
+   "type": "fam",
+   "end": null,
+   "branches": [],
+   "members": [
+    {
+     "branch": "B.III",
+     "nr": 3,
+     "name": "Sulpitius",
+     "birth": null,
+     "death": 1592
+    },
+    {
+     "branch": "B.III",
+     "nr": 4,
+     "name": "Johannes",
+     "birth": 1579,
+     "death": 1648
+    },
+    {
+     "branch": "B.III",
+     "nr": 5,
+     "name": "Petermann",
+     "birth": null,
+     "death": 1622
+    },
+    {
+     "branch": "B.III",
+     "nr": 6,
+     "name": "Sulpitius",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": "B.III",
+     "nr": 7,
+     "name": "Daniel",
+     "birth": 1604,
+     "death": null
+    },
+    {
+     "branch": "B.III",
+     "nr": 8,
+     "name": "Hans Jakob",
+     "birth": 1635,
+     "death": 1691
+    },
+    {
+     "branch": "B.III",
+     "nr": 9,
+     "name": "Samuel",
+     "birth": 1689,
+     "death": 1760
+    },
+    {
+     "branch": "B.III",
+     "nr": 10,
+     "name": "Albrecht",
+     "birth": 1708,
+     "death": 1777
+    },
+    {
+     "branch": "B.III",
+     "nr": null,
+     "name": "Niklaus Emanuel",
+     "birth": null,
+     "death": null
+    }
+   ]
+  }
+ ],
+ "cer_region": "c1a"
+}

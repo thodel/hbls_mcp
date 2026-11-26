@@ -1,0 +1,130 @@
+{
+ "volume": 1,
+ "pdf_page": 423,
+ "printed_page": 394,
+ "running_head": "APPALTO APPENZELL",
+ "articles": [
+  {
+   "headword": "APOTHÉLOZ",
+   "continued": true,
+   "type": "bio",
+   "end": "Siehe auch APPENTHEL. — PS 1918. [L. M.]"
+  },
+  {
+   "headword": "APPALTO",
+   "continued": false,
+   "type": "tem",
+   "start": "APPALTO. (Italienischer Ausdruck für Zollpacht).",
+   "end": "die Zollpacht für Fr. 96 000 jährlich [B. P.]"
+  },
+  {
+   "headword": "APPELLINUS oder ABELLENUS",
+   "continued": false,
+   "type": "bio",
+   "start": "APPELLINUS oder ABELLENUS. Bischof von Genf, wohnte",
+   "end": "Siehe Regeste Genevois, Nr 75. [M. R.]"
+  },
+  {
+   "headword": "APPENTEGGER",
+   "continued": false,
+   "type": "verweis",
+   "start": "APPENTEGGER, HANS. Siehe ALLEMANN (Bern) Nr. 2 und",
+   "end": "(Bern) Nr. 2 und APOTHEKER."
+  },
+  {
+   "headword": "APPENTHEL, d'",
+   "continued": false,
+   "type": "fam",
+   "start": "APPENTHEL, d', oder APOSTELLO, APPENTEL, APPOTHEL, A",
+   "end": "Weitzel : Répertoire des familles, p. 517. [RAEMY.]",
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Pierre",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 1,
+     "name": "Guillaume",
+     "birth": null,
+     "death": 1642
+    },
+    {
+     "branch": null,
+     "nr": 2,
+     "name": "Gaspard",
+     "birth": null,
+     "death": 1630
+    },
+    {
+     "branch": null,
+     "nr": 3,
+     "name": "Josse",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 4,
+     "name": "Jean Pierre Joseph",
+     "birth": null,
+     "death": 1785
+    },
+    {
+     "branch": null,
+     "nr": 5,
+     "name": "Pierre Joseph",
+     "birth": null,
+     "death": 1807
+    },
+    {
+     "branch": null,
+     "nr": 6,
+     "name": "Jean Pierre Joseph Justin",
+     "birth": null,
+     "death": 1848
+    },
+    {
+     "branch": null,
+     "nr": 7,
+     "name": "Joseph Pierre Theodor",
+     "birth": null,
+     "death": 1796
+    },
+    {
+     "branch": null,
+     "nr": 8,
+     "name": "Antoine Joseph Justin",
+     "birth": 1799,
+     "death": 1878
+    },
+    {
+     "branch": null,
+     "nr": 9,
+     "name": "Adolphe",
+     "birth": 1852,
+     "death": 1903
+    }
+   ]
+  },
+  {
+   "headword": "APPENWILER",
+   "continued": false,
+   "type": "bio",
+   "start": "APPENWILER, ERHARD von. Aus Kolmar stammend, ersch",
+   "end": "Aug. Bernoulli in Bas C. IV [A.B.]"
+  },
+  {
+   "headword": "APPENZELL",
+   "continued": false,
+   "type": "geo",
+   "start": "APPENZELL.¹ Bis 1597 Kanton und 13. Stand der alten",
+   "end": null
+  }
+ ],
+ "cer_region": "c2a"
+}

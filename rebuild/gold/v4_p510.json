@@ -1,0 +1,298 @@
+{
+ "volume": 4,
+ "pdf_page": 510,
+ "printed_page": 500,
+ "running_head": "KISTENPASS KLARER",
+ "articles": [
+  {
+   "headword": "KISSLING",
+   "continued": true,
+   "type": "bio",
+   "end": "NZZ 1919, Nr. 1085. [H. Br.]"
+  },
+  {
+   "headword": "KISTENPASS",
+   "continued": false,
+   "type": "geo",
+   "start": "KISTENPASS (Kte. Glarus und Graubünden. S. GLS).",
+   "end": "durch die Schweiz, p. 35. [Nz.]"
+  },
+  {
+   "headword": "KISTLER",
+   "continued": false,
+   "type": "fam",
+   "start": "KISTLER. Familien der Kte. Bern und Schwyz.",
+   "end": "der sog. KistlerAlp in Reichenburg. [R-r.]",
+   "branches": [
+    {
+     "label": "A",
+     "name": "Kanton Bern"
+    },
+    {
+     "label": "A.I",
+     "name": "Burgergeschlecht der Stadt Bern"
+    },
+    {
+     "label": "A.II",
+     "name": "Familie K. in Aarberg"
+    },
+    {
+     "label": "B",
+     "name": "Kanton Schwyz"
+    }
+   ],
+   "members": [
+    {
+     "branch": "A.I",
+     "nr": null,
+     "name": "Peter",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": "A.I",
+     "nr": null,
+     "name": "Burkart",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": "A.I",
+     "nr": null,
+     "name": "Peter",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": "A.I",
+     "nr": null,
+     "name": "Peter",
+     "birth": null,
+     "death": 1480
+    },
+    {
+     "branch": "A.I",
+     "nr": null,
+     "name": "Peter",
+     "birth": null,
+     "death": 1492
+    },
+    {
+     "branch": "A.II",
+     "nr": null,
+     "name": "Hermann",
+     "birth": 1853,
+     "death": 1916
+    },
+    {
+     "branch": "B",
+     "nr": null,
+     "name": "Ferdinand",
+     "birth": 1832,
+     "death": 1914
+    },
+    {
+     "branch": "B",
+     "nr": null,
+     "name": "Pius",
+     "birth": 1877,
+     "death": 1925
+    }
+   ]
+  },
+  {
+   "headword": "KITT",
+   "continued": false,
+   "type": "fam",
+   "start": "KITT. Altes Geschlecht der Stadt Zürich.",
+   "end": "Katalog Stadtbibl. Zürich. 1864 u. 1896. [H. Br.]",
+   "members": [
+    {
+     "branch": null,
+     "nr": 1,
+     "name": "Sebastian",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 2,
+     "name": "David",
+     "birth": 1718,
+     "death": 1802
+    },
+    {
+     "branch": null,
+     "nr": 3,
+     "name": "David",
+     "birth": 1776,
+     "death": 1850
+    },
+    {
+     "branch": null,
+     "nr": 4,
+     "name": "Heinrich",
+     "birth": 1819,
+     "death": 1903
+    }
+   ]
+  },
+  {
+   "headword": "KLÆGER",
+   "continued": false,
+   "type": "verweis",
+   "start": "KLÆGER. Siehe KLEGER.",
+   "end": "KLÆGER. Siehe KLEGER."
+  },
+  {
+   "headword": "KLÆN",
+   "continued": false,
+   "type": "fam",
+   "start": "KLÆN (KLEEN, KLEIN). † Glasmalerfamilie im Kt. Uri,",
+   "end": "ASA XI, p. 4. [J. MÜLLER, A.]",
+   "members": [
+    {
+     "branch": null,
+     "nr": 1,
+     "name": "Josue",
+     "birth": 1591,
+     "death": 1659
+    },
+    {
+     "branch": null,
+     "nr": 2,
+     "name": "Johann Franz",
+     "birth": 1619,
+     "death": 1676
+    }
+   ]
+  },
+  {
+   "headword": "KLÆSI",
+   "continued": false,
+   "type": "fam",
+   "start": "KLÆSI. Glarner Geschlecht, in Luchsingen eingebürgert.",
+   "end": "Einrichtung einer Nervenheilanstalt. [F. H.]",
+   "members": [
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Heinrich",
+     "birth": null,
+     "death": 1388
+    },
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Hans",
+     "birth": null,
+     "death": 1444
+    },
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Markus",
+     "birth": 1842,
+     "death": 1907
+    },
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Jakob",
+     "birth": 1883,
+     "death": null
+    }
+   ]
+  },
+  {
+   "headword": "KLÆUI",
+   "continued": false,
+   "type": "fam",
+   "start": "KLÆUI. Altes Bürgergeschlecht der Gem. Neftenbach",
+   "end": "SZGL, Ergänzungsband. [H. Br.]",
+   "members": [
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Konrad",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Heinrich",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Heini",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Hans",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Heinrich",
+     "birth": 1880,
+     "death": null
+    }
+   ]
+  },
+  {
+   "headword": "KLÆY",
+   "continued": false,
+   "type": "fam",
+   "start": "KLÆY. Alte Familien der Gem. Thunstetten,",
+   "end": "Hst. 36, Nr. 8-9. [H. Tr.]",
+   "members": [
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Alfred",
+     "birth": 1853,
+     "death": 1917
+    }
+   ]
+  },
+  {
+   "headword": "KLANX",
+   "continued": false,
+   "type": "verweis",
+   "start": "KLANX. Siehe CLANX.",
+   "end": "KLANX. Siehe CLANX."
+  },
+  {
+   "headword": "KLARER",
+   "continued": false,
+   "type": "fam",
+   "start": "KLARER. Familien der Kte Appenzell und Zürich.",
+   "end": null,
+   "branches": [
+    {
+     "label": "A",
+     "name": "Kanton Appenzell"
+    }
+   ],
+   "members": [
+    {
+     "branch": "A",
+     "nr": null,
+     "name": "Walter",
+     "birth": 1499,
+     "death": 1567
+    }
+   ]
+  }
+ ],
+ "cer_region": "c1b"
+}

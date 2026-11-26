@@ -1,0 +1,138 @@
+{
+ "volume": 4,
+ "pdf_page": 317,
+ "printed_page": 307,
+ "running_head": "HÜLFSGESELLSCHAFTEN HÜNENBERG",
+ "articles": [
+  {
+   "headword": "HÜLFLICHE VEREINIGUNG",
+   "continued": true,
+   "type": "tem",
+   "start": null,
+   "end": "Ludwig Pfyffer und seine Zeit II. [Frieda Gallati.]"
+  },
+  {
+   "headword": "HÜLFSGESELLSCHAFTEN",
+   "continued": false,
+   "type": "tem",
+   "start": "HÜLFSGESELLSCHAFTEN. Die Organisationen, die ausdr",
+   "end": "Armenwesen und Wohltätigkeit, Heft II. [A. Wild.]"
+  },
+  {
+   "headword": "HÜLFTENSCHANZE",
+   "continued": false,
+   "type": "geo",
+   "start": "HÜLFTENSCHANZE (Kt. Baselland, Bez. Liestal. Gem.",
+   "end": "Basel in den 30er Wirren IV. [K. Gauss.]"
+  },
+  {
+   "headword": "HUÉMOZ",
+   "continued": false,
+   "type": "geo",
+   "start": "HUÉMOZ (Kt. Waadt, Bez. Aigle. S. GLS). Dorf und",
+   "end": "1824-1845 und seit 1860. — DHV. [M. R.]"
+  },
+  {
+   "headword": "HÜN VON BERINGEN",
+   "continued": false,
+   "type": "fam",
+   "start": "HÜN VON BERINGEN. Geschlecht ritterlichen Standes,",
+   "end": "— LL. — Rüeger : Chronik. [Rob. Harder.]",
+   "members": [
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Jakob",
+     "birth": 1321,
+     "death": 1345
+    },
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Johannes",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Eberhard",
+     "birth": null,
+     "death": 1386
+    }
+   ]
+  },
+  {
+   "headword": "HÜNENBERG",
+   "continued": false,
+   "type": "geo",
+   "start": "HÜNENBERG (Kt. Zug. S. GLS). Gem. und Dorf, einsti",
+   "end": "Arch. SG XVII, 209 f. — Gfr. 40. [A. Müller.]"
+  },
+  {
+   "headword": "HÜNENBERG",
+   "continued": false,
+   "type": "fam",
+   "start": "HÜNENBERG. Gechlechter der Kte. Aargau, Bern und L",
+   "end": null,
+   "branches": [
+    {
+     "label": "A",
+     "name": "Kantone Aargau und Bern"
+    }
+   ],
+   "members": [
+    {
+     "branch": "A",
+     "nr": 1,
+     "name": "Hans",
+     "birth": 1421,
+     "death": 1462
+    },
+    {
+     "branch": "A",
+     "nr": 2,
+     "name": "Heinrich",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": "A",
+     "nr": 3,
+     "name": "Hans",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": "A",
+     "nr": 4,
+     "name": "Heinrich",
+     "birth": null,
+     "death": 1568
+    },
+    {
+     "branch": "A",
+     "nr": 5,
+     "name": "Jakob",
+     "birth": 1550,
+     "death": 1596
+    },
+    {
+     "branch": "A",
+     "nr": 6,
+     "name": "David",
+     "birth": 1552,
+     "death": null
+    },
+    {
+     "branch": "A",
+     "nr": null,
+     "name": "Heinrich",
+     "birth": null,
+     "death": 1451
+    }
+   ]
+  }
+ ],
+ "cer_region": "c1a"
+}

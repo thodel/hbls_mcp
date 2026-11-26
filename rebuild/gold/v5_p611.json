@@ -1,0 +1,282 @@
+{
+ "volume": 5,
+ "pdf_page": 611,
+ "printed_page": 597,
+ "running_head": "REYFF REYFF",
+ "articles": [
+  {
+   "headword": "REYE",
+   "continued": true,
+   "type": "bio",
+   "end": "ehemal. Polytechniker 1894. [D. F.]"
+  },
+  {
+   "headword": "REYFF, DE",
+   "continued": false,
+   "type": "fam",
+   "start": "REYFF, de (REIF, REIFF). Eine Familie dieses Namens",
+   "end": null,
+   "branches": [
+    {
+     "label": "I",
+     "name": "Die Patrizierfamilie R."
+    }
+   ],
+   "members": [
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Ulrich",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Hans",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Petrus",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": "I",
+     "nr": null,
+     "name": "Petermann",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": "I",
+     "nr": null,
+     "name": "Cono",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": "I",
+     "nr": 1,
+     "name": "Ullinus",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": "I",
+     "nr": 2,
+     "name": "Niclinus oder Nicolaus",
+     "birth": null,
+     "death": 1449
+    },
+    {
+     "branch": "I",
+     "nr": 3,
+     "name": "Jacobus",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": "I",
+     "nr": 4,
+     "name": "Conrad",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": "I",
+     "nr": 5,
+     "name": "Hensli",
+     "birth": null,
+     "death": 1503
+    },
+    {
+     "branch": "I",
+     "nr": 6,
+     "name": "Johann",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": "I",
+     "nr": 7,
+     "name": "Willinus oder Wilhelm",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": "I",
+     "nr": 8,
+     "name": "Nicolas",
+     "birth": null,
+     "death": 1527
+    },
+    {
+     "branch": "I",
+     "nr": 9,
+     "name": "Hans",
+     "birth": null,
+     "death": 1570
+    },
+    {
+     "branch": "I",
+     "nr": 10,
+     "name": "Christoph",
+     "birth": null,
+     "death": 1615
+    },
+    {
+     "branch": "I",
+     "nr": 11,
+     "name": "Jacob",
+     "birth": null,
+     "death": 1593
+    },
+    {
+     "branch": "I",
+     "nr": 12,
+     "name": "Nicolas",
+     "birth": null,
+     "death": 1597
+    },
+    {
+     "branch": "I",
+     "nr": 13,
+     "name": "Hans",
+     "birth": null,
+     "death": 1652
+    },
+    {
+     "branch": "I",
+     "nr": 14,
+     "name": "Peter",
+     "birth": null,
+     "death": 1626
+    },
+    {
+     "branch": "I",
+     "nr": 15,
+     "name": "Franz",
+     "birth": null,
+     "death": 1657
+    },
+    {
+     "branch": "I",
+     "nr": 16,
+     "name": "Hans Ludwig",
+     "birth": null,
+     "death": 1640
+    },
+    {
+     "branch": "I",
+     "nr": 17,
+     "name": "Franz",
+     "birth": null,
+     "death": 1646
+    },
+    {
+     "branch": "I",
+     "nr": 18,
+     "name": "Joh. Franz",
+     "birth": null,
+     "death": 1673
+    },
+    {
+     "branch": "I",
+     "nr": 19,
+     "name": "Franz Barthélemy",
+     "birth": null,
+     "death": 1664
+    },
+    {
+     "branch": "I",
+     "nr": 20,
+     "name": "Franz Heinrich",
+     "birth": 1617,
+     "death": 1668
+    },
+    {
+     "branch": "I",
+     "nr": 21,
+     "name": "Peter",
+     "birth": null,
+     "death": 1657
+    },
+    {
+     "branch": "I",
+     "nr": 22,
+     "name": "Joh. Wilhelm",
+     "birth": 1610,
+     "death": 1641
+    },
+    {
+     "branch": "I",
+     "nr": 23,
+     "name": "Nicolas",
+     "birth": 1616,
+     "death": null
+    },
+    {
+     "branch": "I",
+     "nr": 24,
+     "name": "Joseph",
+     "birth": null,
+     "death": 1691
+    },
+    {
+     "branch": "I",
+     "nr": 25,
+     "name": "Joseph",
+     "birth": null,
+     "death": 1701
+    },
+    {
+     "branch": "I",
+     "nr": 26,
+     "name": "Johann Daniel",
+     "birth": null,
+     "death": 1738
+    },
+    {
+     "branch": "I",
+     "nr": 27,
+     "name": "Nicolas",
+     "birth": null,
+     "death": 1766
+    },
+    {
+     "branch": "I",
+     "nr": 28,
+     "name": "Georges Nicolas",
+     "birth": null,
+     "death": 1790
+    },
+    {
+     "branch": "I",
+     "nr": 29,
+     "name": "Albert Nicolas Georges Ignace",
+     "birth": 1731,
+     "death": 1809
+    },
+    {
+     "branch": "I",
+     "nr": 30,
+     "name": "Jean Pierre Antoine Ignace",
+     "birth": 1743,
+     "death": 1818
+    },
+    {
+     "branch": "I",
+     "nr": 31,
+     "name": "Hippolyte",
+     "birth": 1834,
+     "death": 1907
+    }
+   ]
+  }
+ ],
+ "cer_region": "c1b"
+}

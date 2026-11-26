@@ -1,0 +1,166 @@
+{
+ "volume": 6,
+ "pdf_page": 564,
+ "printed_page": 540,
+ "running_head": "STEINMAR STEINSBERG",
+ "articles": [
+  {
+   "headword": "STEINMANN",
+   "continued": true,
+   "type": "fam",
+   "end": "Mitglied des innern Rates 1529. — LL. — Gfr. 23, p. 357. [W. J. MEYER.]",
+   "branches": [
+    {
+     "label": "D",
+     "name": "Kanton St. Gallen"
+    },
+    {
+     "label": "E",
+     "name": "Kanton Zürich"
+    },
+    {
+     "label": "F",
+     "name": "Kanton Zug"
+    }
+   ],
+   "members": [
+    {
+     "branch": "E",
+     "nr": null,
+     "name": "Joh. Conrad",
+     "birth": 1866,
+     "death": null
+    },
+    {
+     "branch": "F",
+     "nr": null,
+     "name": "Heinrich",
+     "birth": null,
+     "death": null
+    }
+   ]
+  },
+  {
+   "headword": "STEINMAR, BERTHOLD",
+   "continued": false,
+   "type": "bio",
+   "start": "STEINMAR, BERTHOLD, in Klingnau, Ministeriale des Walter",
+   "end": "Minnesinger. — Bächtold, p. 156. [H. TR.]"
+  },
+  {
+   "headword": "STEINMAUR",
+   "continued": false,
+   "type": "geo",
+   "start": "STEINMAUR (Kt. Zürich, Bez. Dielsdorf. S. GLS). Polit. Gem.,",
+   "end": "Zimmermann im Pfarrarchiv St. (1884). [Th.]"
+  },
+  {
+   "headword": "STEINMAUR (HERREN VON)",
+   "continued": false,
+   "type": "fam",
+   "start": "STEINMAUR (HERREN VON). Ministerialengeschlecht der",
+   "end": "Bibliographie wie zu Artikel STEINMAUR. [Th. u. Hd.]",
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Cuonrad",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Heinrich",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Conrad",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Wilhelm",
+     "birth": null,
+     "death": null
+    }
+   ]
+  },
+  {
+   "headword": "STEINMETZ",
+   "continued": false,
+   "type": "fam",
+   "start": "STEINMETZ. Familie, die anfangs des 19. Jahrh. aus Kassel",
+   "end": "Handelsvertrags mit Frankreich. [Be.]",
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Édouard Charles",
+     "birth": 1865,
+     "death": null
+    }
+   ]
+  },
+  {
+   "headword": "STEINMÜLLER",
+   "continued": false,
+   "type": "fam",
+   "start": "STEINMÜLLER. Familie von Glarus, die 1632 aus der Pfalz",
+   "end": "J. Kublis Genealogienwerke (Mss.). [Paul THÜRER.]",
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": 1,
+     "name": "Gideon",
+     "birth": null,
+     "death": 1673
+    },
+    {
+     "branch": null,
+     "nr": 2,
+     "name": "Johann Rudolf",
+     "birth": 1715,
+     "death": 1792
+    },
+    {
+     "branch": null,
+     "nr": 3,
+     "name": "Jakob",
+     "birth": 1717,
+     "death": 1782
+    },
+    {
+     "branch": null,
+     "nr": 4,
+     "name": "Jakob",
+     "birth": 1718,
+     "death": 1761
+    },
+    {
+     "branch": null,
+     "nr": 5,
+     "name": "Johann Rudolf",
+     "birth": 1773,
+     "death": 1835
+    }
+   ]
+  },
+  {
+   "headword": "STEINSBERG",
+   "continued": false,
+   "type": "geo",
+   "start": "STEINSBERG (Kt. Graub., Bez. Inn, Gem. Ardez. S. GLS).",
+   "end": null
+  }
+ ],
+ "cer_region": "c1a"
+}
