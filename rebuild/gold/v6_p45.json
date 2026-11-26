@@ -1,0 +1,50 @@
+{
+ "volume": 6,
+ "pdf_page": 45,
+ "printed_page": 35,
+ "running_head": "SANKT CHRISCHONA (EINLEITUNG) SANKT GALLEN",
+ "articles": [
+  {
+   "headword": "SANKT BERNHARD (GROSSER)",
+   "continued": true,
+   "type": "geo",
+   "end": "Aufzeichnungen von Mgr. Propst Bourgeois. [Ta.]"
+  },
+  {
+   "headword": "SANKT CHRISCHONA",
+   "continued": false,
+   "type": "geo",
+   "start": "SANKT CHRISCHONA (Kt. Baselstadt, Gem. Bettingen. S. GLS).",
+   "end": "Rappard : 50 Jahre der Pilgermission... [C. Ro.]"
+  },
+  {
+   "headword": "SANKT CLARA",
+   "continued": false,
+   "type": "geo",
+   "start": "SANKT CLARA. Clarissinnenkloster in Kleinbasel, entstanden",
+   "end": "feier (1892). — BVG Bas. 13, p. 96. [C. Ro.]"
+  },
+  {
+   "headword": "SANKT ERHARD",
+   "continued": false,
+   "type": "geo",
+   "start": "SANKT ERHARD (Kt. Luzern, Amt Sursee, Gem. Knutwil. S. GLS).",
+   "end": "Grosses Schadenfeuer 1716. — Gfr. Reg. [P. X. W.]"
+  },
+  {
+   "headword": "SANKT FIDEN",
+   "continued": false,
+   "type": "verweis",
+   "start": "SANKT FIDEN. Siehe TABLAT.",
+   "end": "SANKT FIDEN. Siehe TABLAT."
+  },
+  {
+   "headword": "SANKT GALLEN (ABTEI, STADT, KANTON)",
+   "continued": false,
+   "type": "geo",
+   "start": "SANKT GALLEN (ABTEI, STADT, KANTON) (S. GLS). Schweizerischer",
+   "end": null
+  }
+ ],
+ "cer_region": "c2a"
+}

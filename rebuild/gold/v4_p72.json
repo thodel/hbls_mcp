@@ -1,0 +1,87 @@
+{
+ "volume": 4,
+ "pdf_page": 72,
+ "printed_page": 62,
+ "running_head": "HALLER HALLWILERSEE",
+ "articles": [
+  {
+   "headword": "HALLER",
+   "continued": true,
+   "type": "fam",
+   "start": null,
+   "end": "Stadt. [J. Frick.]",
+   "branches": [
+    {
+     "label": "D.III",
+     "name": "Altes Geschlecht der Gem. Albisrieden bei Zürich"
+    }
+   ],
+   "members": [
+    {
+     "branch": "D.II",
+     "nr": 4,
+     "name": "Hans Jakob",
+     "birth": 1549,
+     "death": 1624
+    },
+    {
+     "branch": "D.II",
+     "nr": 5,
+     "name": "Hans",
+     "birth": 1573,
+     "death": 1621
+    },
+    {
+     "branch": "D.II",
+     "nr": 6,
+     "name": "Wolfgang",
+     "birth": 1578,
+     "death": 1653
+    }
+   ]
+  },
+  {
+   "headword": "HALLER",
+   "continued": false,
+   "type": "bio",
+   "start": "HALLER, Berchtold, der Reformator Berns, * 1492,",
+   "end": "s. Barth, Nr. 13 257-13 259. [A. H.]"
+  },
+  {
+   "headword": "HALLER VON HALLERSTEIN",
+   "continued": false,
+   "type": "bio",
+   "start": "HALLER VON HALLERSTEIN, Christoph, Freiherr, Herr",
+   "end": "B. u. E.— ASG 4, 152. [P. X. W.]"
+  },
+  {
+   "headword": "HALLERIANA",
+   "continued": false,
+   "type": "tem",
+   "start": "HALLERIANA. Studentenverbindung, die auf den am 25",
+   "end": "E. Lerch : Festschr. ...der H. 1908. [H. Sch.]"
+  },
+  {
+   "headword": "HALLSTATT",
+   "continued": false,
+   "type": "verweis",
+   "start": "HALLSTATT. Siehe EISENZEIT.",
+   "end": "HALLSTATT. Siehe EISENZEIT."
+  },
+  {
+   "headword": "HALLWIL",
+   "continued": false,
+   "type": "geo",
+   "start": "HALLWIL (Kt. Aargau, Bez. Lenzburg, Gem. Seengen.",
+   "end": "s. Art. HALLWYL, HERREN VON. [C. B.]"
+  },
+  {
+   "headword": "HALLWILERSEE",
+   "continued": false,
+   "type": "geo",
+   "start": "HALLWILERSEE (Kte. Aargau und Luzern. S. GLS). Um",
+   "end": null
+  }
+ ],
+ "cer_region": "c2a"
+}

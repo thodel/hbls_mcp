@@ -1,0 +1,102 @@
+{
+ "volume": 4,
+ "pdf_page": 542,
+ "printed_page": 532,
+ "running_head": "KONON KONRAD VON MURE",
+ "articles": [
+  {
+   "headword": "KONOLFINGEN",
+   "continued": true,
+   "type": "geo",
+   "start": null,
+   "end": "BBG 14, p. 273 ff. — Tillier. [H. Tr.]"
+  },
+  {
+   "headword": "KONON",
+   "continued": false,
+   "type": "bio",
+   "start": "KONON (CUNO, CONON), Bischof von Sitten, nahm im M",
+   "end": "Juni vor 1184. — Ch. Séd. [L. Mr.]"
+  },
+  {
+   "headword": "KONRAD",
+   "continued": false,
+   "type": "bio",
+   "start": "KONRAD. Name dreier Aebte von St. Gallen. — K. I.,",
+   "end": "Nüscheler : Gotteshäuser. [Bt.]"
+  },
+  {
+   "headword": "KONRAD",
+   "continued": false,
+   "type": "fam",
+   "start": "KONRAD. Familien der Kte. Aargau, Solothurn und Ur",
+   "end": "p. 42. — ASGA 1910. [J. Müller, A.]",
+   "branches": [
+    {
+     "label": "A",
+     "name": "Kanton Aargau"
+    },
+    {
+     "label": "B",
+     "name": "Kanton Solothurn"
+    },
+    {
+     "label": "C",
+     "name": "Kanton Uri"
+    }
+   ],
+   "members": [
+    {
+     "branch": "A",
+     "nr": null,
+     "name": "Johannes",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": "B",
+     "nr": 1,
+     "name": "Niklaus",
+     "birth": null,
+     "death": 1520
+    },
+    {
+     "branch": "B",
+     "nr": 2,
+     "name": "Jakob",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": "B",
+     "nr": 3,
+     "name": "Jakob",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": "C",
+     "nr": null,
+     "name": "Jakob",
+     "birth": null,
+     "death": null
+    }
+   ]
+  },
+  {
+   "headword": "KONRAD (DER FRIEDFERTIGE)",
+   "continued": false,
+   "type": "bio",
+   "start": "KONRAD (DER FRIEDFERTIGE), König von Hoch- und Nie",
+   "end": "(in ASG 1919). [† E. A. Stückelberg.]"
+  },
+  {
+   "headword": "KONRAD VON MURE",
+   "continued": false,
+   "type": "bio",
+   "start": "KONRAD VON MURE, Magister, Chorherr und Kantor der",
+   "end": "Mure (im ASG 1910, Nr. 2). [F. Hegi.]"
+  }
+ ],
+ "cer_region": "c2a"
+}

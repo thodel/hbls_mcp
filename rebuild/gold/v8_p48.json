@@ -1,0 +1,255 @@
+{
+ "volume": 8,
+ "pdf_page": 48,
+ "printed_page": 38,
+ "running_head": "BURRI CAGIANUT",
+ "articles": [
+  {
+   "headword": "BURNAT",
+   "continued": true,
+   "type": "fam",
+   "end": "Grossrat von Vevey, Stadtpräsident 1832. [M. R.]",
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": 3,
+     "name": "Jean Daniel",
+     "birth": 1778,
+     "death": 1831
+    },
+    {
+     "branch": null,
+     "nr": 4,
+     "name": "Paul Henri",
+     "birth": 1779,
+     "death": 1867
+    }
+   ]
+  },
+  {
+   "headword": "BURRI",
+   "continued": false,
+   "type": "verweis",
+   "start": "BURRI. Siehe BURI.",
+   "end": "BURRI. Siehe BURI."
+  },
+  {
+   "headword": "BUSINGER",
+   "continued": false,
+   "type": "fam",
+   "start": "* BUSINGER. — JOSEF, aus einem in Obwalden niedergelassenen",
+   "end": "zehnmal Landammann, † 28. XI. 1932. [R. D.]",
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Josef",
+     "birth": 1855,
+     "death": 1932
+    }
+   ]
+  },
+  {
+   "headword": "BUSSINGER",
+   "continued": false,
+   "type": "fam",
+   "start": "BUSSINGER. Aus Ormalingen (Baselland) stammende Familie.",
+   "end": "Basellandschaftl. Zeitung, 9. IX. 1889. [Otto GASS.]",
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Johann",
+     "birth": 1826,
+     "death": 1889
+    }
+   ]
+  },
+  {
+   "headword": "BUTTENBERG",
+   "continued": false,
+   "type": "geo",
+   "start": "* BUTTENBERG (Kt. Luzern, Amt Sursee, Gem. Schötz). Hinter",
+   "end": "Derselbe : Urk. des Stadtarchivs Zofingen. [P. X. W.]",
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Dietrich",
+     "birth": null,
+     "death": null
+    }
+   ]
+  },
+  {
+   "headword": "BUTTY",
+   "continued": false,
+   "type": "fam",
+   "start": "BUTTY. Alte Freiburger Familie, die aus Ursy stammt,",
+   "end": "Monat-Rosen 1917-1918, p. 581. [RÆMY.]",
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": 1,
+     "name": "Louis",
+     "birth": 1870,
+     "death": 1918
+    },
+    {
+     "branch": null,
+     "nr": 2,
+     "name": "Henri",
+     "birth": 1872,
+     "death": null
+    }
+   ]
+  },
+  {
+   "headword": "BUVELOT",
+   "continued": false,
+   "type": "bio",
+   "start": "BUVELOT, ABRAM LOUIS, aus einer französischen, 1677 ins",
+   "end": "Gemäldegalerien nach ihm benannt. — SKL. [M. R.]"
+  },
+  {
+   "headword": "BUWELI",
+   "continued": false,
+   "type": "fam",
+   "start": "BUWELI (BUWILI, BUWILINUS). † Patriziergeschlecht der",
+   "end": "Bern). — A. Zesiger in BT 1909. [B. SCHMID.]",
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": 1,
+     "name": "Heinrich",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 2,
+     "name": "Berchtold",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 3,
+     "name": "Vinzenz",
+     "birth": 1338,
+     "death": 1376
+    },
+    {
+     "branch": null,
+     "nr": 4,
+     "name": "Petermann",
+     "birth": null,
+     "death": null
+    }
+   ]
+  },
+  {
+   "headword": "BUWIX, VON",
+   "continued": false,
+   "type": "fam",
+   "start": "* BUWIX, von. Adeliges Ministerialengeschlecht des Klosters",
+   "end": "Burgen und Türme... in (BM 1926). [L. J.]",
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Heinrich",
+     "birth": null,
+     "death": null
+    }
+   ]
+  },
+  {
+   "headword": "BUZZINI",
+   "continued": false,
+   "type": "bio",
+   "start": "BUZZINI, GIOVAN PIETRO, von Comologno, * in Spruga",
+   "end": "Ritter der Ehrenlegion 1810. — AHS 1925. [C. T.]"
+  },
+  {
+   "headword": "CACCIA",
+   "continued": false,
+   "type": "fam",
+   "start": "* CACCIA. — DOMENICO, Bruder von Nr. * 1 und * 2, 16. X.",
+   "end": "im Alter von 44 Jahren. — Educatore 1930. [C. T.]",
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Domenico",
+     "birth": 1809,
+     "death": 1863
+    },
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Emilio",
+     "birth": null,
+     "death": 1892
+    }
+   ]
+  },
+  {
+   "headword": "CADISOPRA",
+   "continued": false,
+   "type": "bio",
+   "start": "CADISOPRA, LUDOVICO, von Gentilino, Holzschnitzler, schuf",
+   "end": "Dizionario d. artisti ticinesi. [C. T.]"
+  },
+  {
+   "headword": "CADONAU",
+   "continued": false,
+   "type": "fam",
+   "start": "* CADONAU. Familien von Waltensburg, Strada, Kästris,",
+   "end": "u. a. Stiftungen mehr. — BM 1929. [L. J.]",
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Anton",
+     "birth": 1850,
+     "death": 1929
+    }
+   ]
+  },
+  {
+   "headword": "CAGIANUT",
+   "continued": false,
+   "type": "fam",
+   "start": "CAGIANUT (früher JENUT, JANUT und GENOT). Bauernfamilie in",
+   "end": null,
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Barclamiu A.",
+     "birth": 1848,
+     "death": 1919
+    },
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Nicolaus",
+     "birth": 1882,
+     "death": 1927
+    }
+   ]
+  }
+ ],
+ "cer_region": "c1a"
+}

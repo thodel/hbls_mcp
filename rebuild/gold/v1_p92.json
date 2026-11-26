@@ -1,0 +1,36 @@
+{
+ "volume": 1,
+ "pdf_page": 92,
+ "printed_page": 71,
+ "running_head": "ABSCHWUNG ABSINTH",
+ "articles": [
+  {
+   "headword": "ABSCHIEDE, EIDG",
+   "continued": true,
+   "type": "tem",
+   "end": "staatsrechtlicher Natur sind). [H. BRUNNER.]"
+  },
+  {
+   "headword": "ABSCHWUNG",
+   "continued": false,
+   "type": "geo",
+   "start": "ABSCHWUNG (Kt. Bern, Amtsbez. Oberhasle. S. GLS).",
+   "end": "(siehe diesen Art.) benannten. [H. D]"
+  },
+  {
+   "headword": "ABSENCE",
+   "continued": false,
+   "type": "tem",
+   "start": "ABSENCE de la ville. (ABWESENHEIT der Stadt). (Kt.",
+   "end": "Abwesenheit der Bürger, vergl. BÜRGERRECHT."
+  },
+  {
+   "headword": "ABSINTH",
+   "continued": false,
+   "type": "tem",
+   "start": "ABSINTH. Diese Pflanze, von der zwei Arten, der",
+   "end": null
+  }
+ ],
+ "cer_region": "c1b"
+}

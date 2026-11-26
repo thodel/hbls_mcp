@@ -171,8 +171,23 @@ def get_family_members(headword: str, volume: int) -> list[dict]:
 
 @mcp.tool()
 def search_persons(query: str, limit: int = 50) -> list[dict]:
-    """Search persons by forename OR family name across all article categories."""
+    """Search persons by forename OR family name across all article categories.
+
+    A query of several words is read as forename + family name as well: "Peter Kistler",
+    "Kistler Peter" or "Kistler, Peter" return the members named Peter of the KISTLER
+    articles. On a rebuilt database every hit carries `stable_id` for get_member."""
     return db_module.search_persons(query, limit)
+
+
+@mcp.tool()
+def get_member(member_id: str) -> dict:
+    """One family member by its stable id (`stable_id` from search_persons or
+    get_family_members, e.g. "hbls-4-510-KISTLER#u4" or "hbls-4-68-HALLER#12"): forename,
+    years, branch, offices with place and years, kinship, and the passage about the person."""
+    r = db_module.get_member(member_id.strip())
+    if not r:
+        return {"error": f"No member with id '{member_id}'."}
+    return r
 
 
 @mcp.tool()

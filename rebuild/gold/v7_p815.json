@@ -1,0 +1,251 @@
+{
+ "volume": 7,
+ "pdf_page": 815,
+ "printed_page": 775,
+ "running_head": "ZWETSCHGENKRIEG ZWICKY",
+ "articles": [
+  {
+   "headword": "ZWETSCHGENKRIEG",
+   "continued": false,
+   "type": "tem",
+   "start": "ZWETSCHGENKRIEG heisst ein in die Zeit der Zwetschgenreife",
+   "end": "Badener Kalender 1888, p. 37. [H. Tr.]"
+  },
+  {
+   "headword": "ZWICK",
+   "continued": false,
+   "type": "fam",
+   "start": "ZWICK. Konstanzer Bürgerfamilie. Wappen : in Schwarz",
+   "end": "Wappenrolle zur Katze Konstanz. — Zw. 1926, Nr. 2. [HERDI.]",
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Johann",
+     "birth": 1496,
+     "death": 1542
+    }
+   ]
+  },
+  {
+   "headword": "ZWICKER",
+   "continued": false,
+   "type": "fam",
+   "start": "ZWICKER. † Familie der Stadt Baden, die von 1343",
+   "end": "W. Merz : Wappenbuch... Baden. [H. Tr.]",
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Johans",
+     "birth": null,
+     "death": null
+    }
+   ]
+  },
+  {
+   "headword": "ZWICKY",
+   "continued": false,
+   "type": "fam",
+   "start": "ZWICKY. Familien der Kte. Glarus und St. Gallen; heute",
+   "end": null,
+   "branches": [
+    {
+     "label": "A",
+     "name": "Kanton Glarus"
+    },
+    {
+     "label": "A.I",
+     "name": "Zwicky von Mollis"
+    }
+   ],
+   "members": [
+    {
+     "branch": "A",
+     "nr": null,
+     "name": "Rudolf",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": "A.I",
+     "nr": 1,
+     "name": "Fridolin",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": "A.I",
+     "nr": 2,
+     "name": "Fridolin",
+     "birth": 1565,
+     "death": 1639
+    },
+    {
+     "branch": "A.I",
+     "nr": 3,
+     "name": "Fridolin",
+     "birth": 1620,
+     "death": 1681
+    },
+    {
+     "branch": "A.I",
+     "nr": 4,
+     "name": "Fridolin",
+     "birth": 1631,
+     "death": 1707
+    },
+    {
+     "branch": "A.I",
+     "nr": 5,
+     "name": "Johann Heinrich",
+     "birth": 1651,
+     "death": 1733
+    },
+    {
+     "branch": "A.I",
+     "nr": "5a",
+     "name": "Fridolin",
+     "birth": 1653,
+     "death": 1734
+    },
+    {
+     "branch": "A.I",
+     "nr": 6,
+     "name": "Fridolin",
+     "birth": 1681,
+     "death": 1720
+    },
+    {
+     "branch": "A.I",
+     "nr": 7,
+     "name": "Melchior",
+     "birth": 1655,
+     "death": 1725
+    },
+    {
+     "branch": "A.I",
+     "nr": 8,
+     "name": "Caspar",
+     "birth": 1657,
+     "death": 1723
+    },
+    {
+     "branch": "A.I",
+     "nr": 9,
+     "name": "Johann Heinrich",
+     "birth": 1677,
+     "death": 1703
+    },
+    {
+     "branch": "A.I",
+     "nr": 10,
+     "name": "Caspar",
+     "birth": 1684,
+     "death": 1721
+    },
+    {
+     "branch": "A.I",
+     "nr": 11,
+     "name": "Fridolin",
+     "birth": 1676,
+     "death": 1741
+    },
+    {
+     "branch": "A.I",
+     "nr": 12,
+     "name": "Johann Heinrich",
+     "birth": 1679,
+     "death": 1760
+    },
+    {
+     "branch": "A.I",
+     "nr": 13,
+     "name": "Othmar",
+     "birth": 1706,
+     "death": 1755
+    },
+    {
+     "branch": "A.I",
+     "nr": 14,
+     "name": "David",
+     "birth": 1740,
+     "death": 1796
+    },
+    {
+     "branch": "A.I",
+     "nr": 15,
+     "name": "Fridolin",
+     "birth": 1704,
+     "death": 1777
+    },
+    {
+     "branch": "A.I",
+     "nr": 16,
+     "name": "Balthasar",
+     "birth": 1750,
+     "death": 1823
+    },
+    {
+     "branch": "A.I",
+     "nr": 17,
+     "name": "Fridolin",
+     "birth": 1715,
+     "death": 1756
+    },
+    {
+     "branch": "A.I",
+     "nr": 18,
+     "name": "Johann Melchior",
+     "birth": 1750,
+     "death": 1806
+    },
+    {
+     "branch": "A.I",
+     "nr": 19,
+     "name": "Caspar",
+     "birth": 1756,
+     "death": 1837
+    },
+    {
+     "branch": "A.I",
+     "nr": 20,
+     "name": "Johann Jakob",
+     "birth": 1768,
+     "death": 1806
+    },
+    {
+     "branch": "A.I",
+     "nr": 21,
+     "name": "Fridolin",
+     "birth": 1755,
+     "death": null
+    },
+    {
+     "branch": "A.I",
+     "nr": 22,
+     "name": "Johann Jakob",
+     "birth": 1754,
+     "death": 1795
+    },
+    {
+     "branch": "A.I",
+     "nr": 23,
+     "name": "Johann Peter",
+     "birth": 1770,
+     "death": 1838
+    },
+    {
+     "branch": "A.I",
+     "nr": 24,
+     "name": "Johann Melchior",
+     "birth": 1750,
+     "death": null
+    }
+   ]
+  }
+ ],
+ "cer_region": "c1b"
+}

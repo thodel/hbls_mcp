@@ -1,0 +1,280 @@
+{
+ "volume": 4,
+ "pdf_page": 318,
+ "printed_page": 308,
+ "running_head": "HÜNENBERG HÜNERWADEL",
+ "articles": [
+  {
+   "headword": "HÜNENBERG",
+   "continued": true,
+   "type": "fam",
+   "start": null,
+   "end": "Staatsarchiv.— Gfr. Reg. [P. X. W.]",
+   "branches": [
+    {
+     "label": "B",
+     "name": "Kanton Luzern"
+    }
+   ],
+   "members": [
+    {
+     "branch": "B",
+     "nr": null,
+     "name": "Sebastian",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": "B",
+     "nr": null,
+     "name": "Rudolf",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": "B",
+     "nr": null,
+     "name": "Othmar",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": "B",
+     "nr": null,
+     "name": "Gotthard",
+     "birth": null,
+     "death": 1659
+    }
+   ]
+  },
+  {
+   "headword": "HÜNENBERG, VON",
+   "continued": false,
+   "type": "fam",
+   "start": "HÜNENBERG, von. Rittergeschlecht des Mittelalters,",
+   "end": "— Zürcher Stadt- und Steuerbücher. [W. J. Meyer.]",
+   "members": [
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Walter",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 1,
+     "name": "Walter",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 2,
+     "name": "Peter I.",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 3,
+     "name": "Benigna",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 4,
+     "name": "Elisabeth",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 5,
+     "name": "Clara",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 6,
+     "name": "Rudolf",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 7,
+     "name": "Gottfried (I.)",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 8,
+     "name": "Peter II.",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 9,
+     "name": "Heinrich",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 10,
+     "name": "Heinrich",
+     "birth": null,
+     "death": 1369
+    },
+    {
+     "branch": null,
+     "nr": 11,
+     "name": "Hartmann",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 12,
+     "name": "Gœtz",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 13,
+     "name": "Johann",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Rudolf",
+     "birth": null,
+     "death": null
+    }
+   ]
+  },
+  {
+   "headword": "HÜNERWADEL",
+   "continued": false,
+   "type": "fam",
+   "start": "HÜNERWADEL. Ratsgeschlecht des Freistaates Schaff",
+   "end": null,
+   "members": [
+    {
+     "branch": null,
+     "nr": 1,
+     "name": "Jakob",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 2,
+     "name": "Jakob",
+     "birth": null,
+     "death": 1561
+    },
+    {
+     "branch": null,
+     "nr": 3,
+     "name": "Hans Jakob",
+     "birth": null,
+     "death": 1598
+    },
+    {
+     "branch": null,
+     "nr": 4,
+     "name": "Christof",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 5,
+     "name": "Hans Martin",
+     "birth": 1590,
+     "death": 1639
+    },
+    {
+     "branch": null,
+     "nr": 6,
+     "name": "Markus",
+     "birth": 1633,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 7,
+     "name": "Hans Martin",
+     "birth": 1657,
+     "death": 1720
+    },
+    {
+     "branch": null,
+     "nr": 8,
+     "name": "Markus",
+     "birth": 1667,
+     "death": 1736
+    },
+    {
+     "branch": null,
+     "nr": 9,
+     "name": "Johannes",
+     "birth": 1698,
+     "death": 1748
+    },
+    {
+     "branch": null,
+     "nr": 10,
+     "name": "Gottlieb",
+     "birth": 1744,
+     "death": 1820
+    },
+    {
+     "branch": null,
+     "nr": 11,
+     "name": "Gottlieb Heinrich",
+     "birth": 1769,
+     "death": 1842
+    },
+    {
+     "branch": null,
+     "nr": 12,
+     "name": "Hieronymus",
+     "birth": 1772,
+     "death": 1824
+    },
+    {
+     "branch": null,
+     "nr": 13,
+     "name": "Friedrich",
+     "birth": 1779,
+     "death": 1849
+    },
+    {
+     "branch": null,
+     "nr": 14,
+     "name": "Marx",
+     "birth": 1700,
+     "death": 1766
+    },
+    {
+     "branch": null,
+     "nr": 15,
+     "name": "Marx",
+     "birth": 1725,
+     "death": 1805
+    }
+   ]
+  }
+ ],
+ "cer_region": "c2b"
+}

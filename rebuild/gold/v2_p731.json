@@ -1,0 +1,123 @@
+{
+ "volume": 2,
+ "pdf_page": 731,
+ "printed_page": 711,
+ "running_head": "DIEPOLDSAU DIESBACH",
+ "articles": [
+  {
+   "headword": "DIEPFLINGEN",
+   "continued": true,
+   "type": "geo",
+   "end": "p. 88.und 116. — Heimatkunde von Baselland. [O. GASS.]"
+  },
+  {
+   "headword": "DIEPOLDSAU",
+   "continued": false,
+   "type": "geo",
+   "start": "DIEPOLDSAU (Kt. St. Gallen, Bez. Unter Rheinthal. S. GLS).",
+   "end": "Vergl. Hardegger und Wartmann : Der Hof Kriessern. [Bt.]"
+  },
+  {
+   "headword": "DIERAUER",
+   "continued": false,
+   "type": "fam",
+   "start": "DIERAUER. Alteingesessenes Bauerngeschlecht in Bernegg",
+   "end": "Literatur. — ASG 1920. [Bt.]",
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Johannes",
+     "birth": 1842,
+     "death": 1920
+    }
+   ]
+  },
+  {
+   "headword": "DIERIKON",
+   "continued": false,
+   "type": "geo",
+   "start": "DIERIKON (Kt. und Amt Luzern. S. GLS). Gem. und Dorf",
+   "end": "Pfarrgesch. von Root. — Staatsarch. Luzern. [P. X. W.]"
+  },
+  {
+   "headword": "DIERIKON, VON",
+   "continued": false,
+   "type": "fam",
+   "start": "DIERIKON, von. Geschlecht der Stadt Luzern, Bürgerrecht",
+   "end": "Gfr. 35, 84 ff. — Staatsarch. Luzern. [P. X. W.]",
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Johann",
+     "birth": null,
+     "death": null
+    }
+   ]
+  },
+  {
+   "headword": "DIERINGER",
+   "continued": false,
+   "type": "fam",
+   "start": "DIERINGER, Magister PETER, ca. 1450-1476, Hofschullehrer",
+   "end": "Vergleiche Lukas Bruderschaft. [P. X. W.]",
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Peter",
+     "birth": 1450,
+     "death": 1476
+    },
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Ludwig",
+     "birth": 1646,
+     "death": 1659
+    }
+   ]
+  },
+  {
+   "headword": "DIES",
+   "continued": false,
+   "type": "bio",
+   "start": "DIES, JÖRG, gen. SCHWAB, Bildhauer zu Schaffhausen, wird",
+   "end": "auf dem vierröhrigen Brunnen. — SKL. [W.-K.]"
+  },
+  {
+   "headword": "DIESBACH",
+   "continued": false,
+   "type": "geo",
+   "start": "DIESBACH (Kt. Glarus. S. GLS). Gem. und Dorf in der",
+   "end": "Gemälde des Kts. Glarus, p. 600. [Nz.]"
+  },
+  {
+   "headword": "DIESBACH, VON",
+   "continued": false,
+   "type": "fam",
+   "start": "DIESBACH, von. Familien in Bern und seit der Reformation",
+   "end": null,
+   "branches": [
+    {
+     "label": "A",
+     "name": "Kanton Bern"
+    }
+   ],
+   "members": [
+    {
+     "branch": "A",
+     "nr": null,
+     "name": "Johann",
+     "birth": 1365,
+     "death": null
+    }
+   ]
+  }
+ ],
+ "cer_region": "c1b"
+}

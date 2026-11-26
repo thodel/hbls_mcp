@@ -1,0 +1,200 @@
+{
+ "volume": 3,
+ "pdf_page": 69,
+ "printed_page": 59,
+ "running_head": "ERLACH ERLACH",
+ "articles": [
+  {
+   "headword": "ERLACH",
+   "continued": true,
+   "type": "geo",
+   "end": "Friedli : Bärndütsch (Bd. Ins). — Stadtarchiv. [E. B.]"
+  },
+  {
+   "headword": "ERLACH (HERRSCHAFT, spätere LANDVOGTEI und AMT)",
+   "continued": false,
+   "type": "geo",
+   "start": "ERLACH (HERRSCHAFT, spätere LANDVOGTEI und AMT) (Kt. Bern.",
+   "end": "Die Landwirtschaft im Amt E. — BT II, 1922. [E. B.]"
+  },
+  {
+   "headword": "ERLACH, VON",
+   "continued": false,
+   "type": "fam",
+   "start": "ERLACH, von. Altangesehenes adeliges Berner Geschlecht,",
+   "end": null,
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": 1,
+     "name": "Ulrich",
+     "birth": null,
+     "death": 1303
+    },
+    {
+     "branch": null,
+     "nr": 2,
+     "name": "Rudolf",
+     "birth": null,
+     "death": 1360
+    },
+    {
+     "branch": null,
+     "nr": 3,
+     "name": "Ulrich",
+     "birth": null,
+     "death": 1382
+    },
+    {
+     "branch": null,
+     "nr": 4,
+     "name": "Rudolf",
+     "birth": null,
+     "death": 1404
+    },
+    {
+     "branch": null,
+     "nr": 5,
+     "name": "Burkhard",
+     "birth": null,
+     "death": 1349
+    },
+    {
+     "branch": null,
+     "nr": 6,
+     "name": "Burkhard Werner",
+     "birth": null,
+     "death": 1395
+    },
+    {
+     "branch": null,
+     "nr": 7,
+     "name": "Ulrich",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 8,
+     "name": "Rudolf",
+     "birth": null,
+     "death": 1454
+    },
+    {
+     "branch": null,
+     "nr": 9,
+     "name": "Johann",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 10,
+     "name": "Ulrich",
+     "birth": null,
+     "death": 1459
+    },
+    {
+     "branch": null,
+     "nr": 11,
+     "name": "Niklaus",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 12,
+     "name": "Walther",
+     "birth": null,
+     "death": 1401
+    },
+    {
+     "branch": null,
+     "nr": 13,
+     "name": "Anton",
+     "birth": null,
+     "death": 1455
+    },
+    {
+     "branch": null,
+     "nr": 14,
+     "name": "Johann",
+     "birth": null,
+     "death": 1441
+    },
+    {
+     "branch": null,
+     "nr": 15,
+     "name": "Burkhard",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 16,
+     "name": "Johanna",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 17,
+     "name": "Adelheid",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 18,
+     "name": "Ulrich",
+     "birth": null,
+     "death": 1472
+    },
+    {
+     "branch": null,
+     "nr": 19,
+     "name": "Petermann",
+     "birth": null,
+     "death": 1471
+    },
+    {
+     "branch": null,
+     "nr": 20,
+     "name": "Johann",
+     "birth": null,
+     "death": 1520
+    },
+    {
+     "branch": null,
+     "nr": 21,
+     "name": "Thüring",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 22,
+     "name": "Anton",
+     "birth": null,
+     "death": 1553
+    },
+    {
+     "branch": null,
+     "nr": 23,
+     "name": "Johann Rudolf",
+     "birth": null,
+     "death": 1480
+    },
+    {
+     "branch": null,
+     "nr": 24,
+     "name": "Rudolf",
+     "birth": null,
+     "death": 1507
+    }
+   ]
+  }
+ ],
+ "cer_region": "c1a"
+}

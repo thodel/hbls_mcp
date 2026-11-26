@@ -1,0 +1,293 @@
+{
+ "volume": 8,
+ "pdf_page": 95,
+ "printed_page": 85,
+ "running_head": "HERTENSTEIN HOFER",
+ "articles": [
+  {
+   "headword": "HERT",
+   "continued": true,
+   "type": "bio",
+   "end": "Zürichs im Mittelalter, Beilagen 12 und 13. [E. Hsr.]"
+  },
+  {
+   "headword": "HERTENSTEIN, VON",
+   "continued": false,
+   "type": "fam",
+   "start": "* HERTENSTEIN, von. — MELCHIOR, von Luzern, Kaplan",
+   "end": "um die Hebung des Schulwesens. [Fr. GISLER.]",
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Melchior",
+     "birth": null,
+     "death": 1682
+    }
+   ]
+  },
+  {
+   "headword": "HESS",
+   "continued": false,
+   "type": "fam",
+   "start": "* HESS. — Kanton Zürich. — 1. HANS, * 11. X. 1880, Urenkel",
+   "end": "und weitere Fachschriften. — SZGL 1932. [D. u. G.]",
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": 1,
+     "name": "Hans",
+     "birth": 1880,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 2,
+     "name": "Walter",
+     "birth": 1885,
+     "death": null
+    }
+   ]
+  },
+  {
+   "headword": "HETTLINGEN, VON",
+   "continued": false,
+   "type": "fam",
+   "start": "* HETTLINGEN, von (HEDLINGER). Die vollständige Wappen",
+   "end": "Landammann des Bez. Schwyz 1858-1860, Kantonsrichter. [M. STYGER.]",
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Konrad",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Johann Werner",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 1,
+     "name": "Karl",
+     "birth": 1766,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 2,
+     "name": "Joh. Anton",
+     "birth": 1769,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 3,
+     "name": "Werner",
+     "birth": 1770,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 4,
+     "name": "Felix",
+     "birth": 1776,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 5,
+     "name": "Anton",
+     "birth": 1818,
+     "death": 1888
+    }
+   ]
+  },
+  {
+   "headword": "HEUSSER",
+   "continued": false,
+   "type": "fam",
+   "start": "* HEUSSER. — JOHANN JAKOB, 1783-1859, von Hombrechtikon,",
+   "end": "an der Univ. Zürich 1928. — Bürgerbuch. [D. u. G.]",
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Johann Jakob",
+     "birth": 1783,
+     "death": 1859
+    },
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Hans",
+     "birth": 1884,
+     "death": null
+    }
+   ]
+  },
+  {
+   "headword": "HICKLIN",
+   "continued": false,
+   "type": "fam",
+   "start": "HICKLIN. Alte, aus Neuhausen stammende Beisassenfamilie",
+   "end": "Orgelpfeifen in Sicherheit. — Dettlings Chronik. [M. STYGER.]",
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Jost",
+     "birth": 1600,
+     "death": 1679
+    }
+   ]
+  },
+  {
+   "headword": "HIESTAND",
+   "continued": false,
+   "type": "fam",
+   "start": "* HIESTAND. — PAUL, 16. I. 1868 - 24. III. 1932, Sohn von",
+   "end": "NZZ 1932, Nr. 587 u. 592. — Zürcher Post 1932, Nr. 75. [W. G.]",
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Paul",
+     "birth": 1868,
+     "death": 1932
+    }
+   ]
+  },
+  {
+   "headword": "HILGARD",
+   "continued": false,
+   "type": "bio",
+   "start": "HILGARD, KARL EMIL, aus Nordamerika, * 21. II. 1858 in",
+   "end": "(1928) u. a. m. — Persönl. Mitteilungen. [D. u. G.]"
+  },
+  {
+   "headword": "HILLEBRAND",
+   "continued": false,
+   "type": "bio",
+   "start": "HILLEBRAND, BRUNO, deutscher Nationalökonom und Statistiker,",
+   "end": "einen Ruf nach Jena an. — ADB 12, p. 399. [E. D.]"
+  },
+  {
+   "headword": "HILTBRUNNER",
+   "continued": false,
+   "type": "fam",
+   "start": "* HILTBRUNNER. — Kanton Bern. — HERMANN, * 24. XI. 1893,",
+   "end": "Graubünden (3 Bde., 1927 /1928). [W. G.]",
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Hermann",
+     "birth": 1893,
+     "death": null
+    }
+   ]
+  },
+  {
+   "headword": "HINTERMANN",
+   "continued": false,
+   "type": "fam",
+   "start": "* HINTERMANN. — HEINRICH, Geograph, *16. III. 1888, von",
+   "end": "— NZZ 1933, Nr. 167. — SL 1933, Nr. 8. [E. D.]",
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Heinrich",
+     "birth": 1888,
+     "death": 1933
+    }
+   ]
+  },
+  {
+   "headword": "HIRZEL",
+   "continued": false,
+   "type": "fam",
+   "start": "* HIRZEL. — MANFRED, Kunstmaler, von Winterthur, * 1905",
+   "end": "und 31. VIII. 1932. — Landbote 1934, Nr. 50. [W. G.]",
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Manfred",
+     "birth": 1905,
+     "death": 1932
+    },
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Hermann",
+     "birth": null,
+     "death": null
+    }
+   ]
+  },
+  {
+   "headword": "HŒSLI, HŒSSLI",
+   "continued": false,
+   "type": "fam",
+   "start": "* HŒSLI, HŒSSLI. — Kanton Glarus. Wappen : in Rot ein",
+   "end": "Sängervereins, leitete mehrere Gesangvereine. [G. A. B.]",
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Heinrich",
+     "birth": null,
+     "death": 1624
+    },
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Heinrich",
+     "birth": 1784,
+     "death": 1864
+    },
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Fridolin",
+     "birth": null,
+     "death": 1877
+    }
+   ]
+  },
+  {
+   "headword": "HOFER",
+   "continued": false,
+   "type": "fam",
+   "start": "* HOFER. — Kanton Bern. — MARCEL von Bet-",
+   "end": null,
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Marcel",
+     "birth": null,
+     "death": null
+    }
+   ]
+  }
+ ],
+ "cer_region": "c2b"
+}

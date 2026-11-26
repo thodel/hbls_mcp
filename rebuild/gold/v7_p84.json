@@ -1,0 +1,156 @@
+{
+ "volume": 7,
+ "pdf_page": 84,
+ "printed_page": 66,
+ "running_head": "TRÜSSEL TRUNS",
+ "articles": [
+  {
+   "headword": "TRÜMPLER",
+   "continued": true,
+   "type": "fam",
+   "end": "verfasste eine Reihe von chemischen Arbeiten. [E. D.]",
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Hans",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Rudolf",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Heinrich",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Hans Jakob",
+     "birth": 1768,
+     "death": 1845
+    },
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Robert",
+     "birth": 1886,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Gottfried",
+     "birth": 1889,
+     "death": null
+    }
+   ]
+  },
+  {
+   "headword": "TRÜSSEL",
+   "continued": false,
+   "type": "fam",
+   "start": "TRÜSSEL. Familie von Sumiswald (Bern). — FRIEDRICH, Dr. jur.,",
+   "end": "Abhandlungen. — SZGL. — Pers. Mitteil. [D. S.]",
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Friedrich",
+     "birth": 1873,
+     "death": null
+    }
+   ]
+  },
+  {
+   "headword": "TRUFFAULT",
+   "continued": false,
+   "type": "fam",
+   "start": "TRUFFAULT. Aus Aulnay les Joinville (Champagne) stammende",
+   "end": "SKL. — Covelle : LB. — Staatsarch. Genf. [H. G.]",
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Charles",
+     "birth": 1616,
+     "death": 1688
+    }
+   ]
+  },
+  {
+   "headword": "TRUFFER",
+   "continued": false,
+   "type": "fam",
+   "start": "TRUFFER. Alte, im St. Nikolaital (Wallis) verbreitete Familie,",
+   "end": "1638 - † 1639. — BWG VII. — Archiv Valeria. [D. I.]",
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": 1,
+     "name": "Christian",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 2,
+     "name": "Johann",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 3,
+     "name": "Christian",
+     "birth": null,
+     "death": 1639
+    }
+   ]
+  },
+  {
+   "headword": "TRUFFIN",
+   "continued": false,
+   "type": "fam",
+   "start": "TRUFFIN. Alte Familie von Estavayer le Lac (Freiburg), die",
+   "end": "H. de Vevey : Genealogie (Ms.). [H. V.]",
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Baptista",
+     "birth": 1638,
+     "death": 1698
+    }
+   ]
+  },
+  {
+   "headword": "TRUNGEN",
+   "continued": false,
+   "type": "geo",
+   "start": "TRUNGEN (Kt. St. Gallen, Bez. Wil, Gem. Bronschhofen. S. GLS).",
+   "end": "Art. BROMSHOFEN. — Stiftsarchiv. [J. M.]"
+  },
+  {
+   "headword": "TRUNS oder TRONS",
+   "continued": false,
+   "type": "geo",
+   "start": "TRUNS oder TRONS (rom. TRUN) (Kt. Graubünden, Bez. Vorderrhein.",
+   "end": null
+  }
+ ],
+ "cer_region": "c2b"
+}

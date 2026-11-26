@@ -1,0 +1,239 @@
+{
+ "volume": 3,
+ "pdf_page": 614,
+ "printed_page": 592,
+ "running_head": "GOLDBERGWERKE GOLDER",
+ "articles": [
+  {
+   "headword": "GOLDBERG",
+   "continued": true,
+   "type": "geo",
+   "end": "Tiefen des Fontannengebietes, p. 8 f. [P. X. W.]"
+  },
+  {
+   "headword": "GOLDBERGWERKE",
+   "continued": false,
+   "type": "verweis",
+   "start": "GOLDBERGWERKE. Siehe BERGBAU.",
+   "end": "GOLDBERGWERKE. Siehe BERGBAU."
+  },
+  {
+   "headword": "GOLDENBERG",
+   "continued": false,
+   "type": "geo",
+   "start": "GOLDENBERG (Kt. Zürich, Bez. u. Gem. Andelfingen.",
+   "end": "Nbl. Stadtbibl. Winterthur 1817. [L. FORRER.]"
+  },
+  {
+   "headword": "GOLDENBERG (HERREN VON)",
+   "continued": false,
+   "type": "fam",
+   "start": "GOLDENBERG (HERREN VON). Kiburgisch-habsburgisches",
+   "end": "MAGZ 28. — Habsburger Urbar. [L. FORRER.]",
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Jacobus",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 1,
+     "name": "Egbrecht (I.)",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 2,
+     "name": "Egbrecht (II.)",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 3,
+     "name": "Wetzel",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 4,
+     "name": "Egbrecht III.",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 5,
+     "name": "Rudolf",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 6,
+     "name": "Jakob",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 7,
+     "name": "Elisabeth",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 8,
+     "name": "Herdegen",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 9,
+     "name": "Jakob",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 10,
+     "name": "Hans",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 11,
+     "name": "Elisabeth (II.)",
+     "birth": null,
+     "death": 1497
+    },
+    {
+     "branch": null,
+     "nr": 12,
+     "name": "Egolf",
+     "birth": null,
+     "death": 1569
+    }
+   ]
+  },
+  {
+   "headword": "GOLDENE SONNE",
+   "continued": false,
+   "type": "geo",
+   "start": "GOLDENE SONNE (Kt. Graubünden, Bez. Imboden. S. GLS).",
+   "end": "Das Bergwerk zur Goldenen Sonne. [L. J.]"
+  },
+  {
+   "headword": "GOLDENER",
+   "continued": false,
+   "type": "fam",
+   "start": "GOLDENER. Altes Appenzeller Geschlecht, das schon",
+   "end": "AU. — App. Monatsblatt. — LL. [A. M.]",
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Ignaz Anton",
+     "birth": 1722,
+     "death": null
+    }
+   ]
+  },
+  {
+   "headword": "GOLDENER BUND",
+   "continued": false,
+   "type": "tem",
+   "start": "GOLDENER BUND. Am 5. X. 1586 schlossen die VII",
+   "end": "Gfr. 54, p. 156 u. 215 ff. [H. TR.]"
+  },
+  {
+   "headword": "GOLDER",
+   "continued": false,
+   "type": "fam",
+   "start": "GOLDER. Familien der Kte. Luzern und St. Gallen.",
+   "end": null,
+   "branches": [
+    {
+     "label": "A",
+     "name": "Kanton Luzern"
+    }
+   ],
+   "members": [
+    {
+     "branch": "A",
+     "nr": null,
+     "name": "Uli",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": "A",
+     "nr": null,
+     "name": "Hartmann",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": "A",
+     "nr": null,
+     "name": "Heini",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": "A",
+     "nr": null,
+     "name": "Johannes",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": "A",
+     "nr": null,
+     "name": "Jenni",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": "A",
+     "nr": null,
+     "name": "Hensli",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": "A",
+     "nr": null,
+     "name": "Ruedi",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": "A",
+     "nr": null,
+     "name": "Clevi",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": "A",
+     "nr": 1,
+     "name": "Hans",
+     "birth": 1488,
+     "death": 1539
+    }
+   ]
+  }
+ ],
+ "cer_region": "c1b"
+}

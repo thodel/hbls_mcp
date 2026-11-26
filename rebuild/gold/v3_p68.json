@@ -1,0 +1,39 @@
+{
+ "volume": 3,
+ "pdf_page": 68,
+ "printed_page": 58,
+ "running_head": "ERK ERLACH",
+ "articles": [
+  {
+   "headword": "ERIZ",
+   "continued": true,
+   "type": "geo",
+   "end": "Hubschmid in Festschrift f. Bachmann. — FRB. [S. I.]"
+  },
+  {
+   "headword": "ERK",
+   "continued": false,
+   "type": "fam",
+   "start": "ERK. † Geschlecht der Stadt Bern. — HANS JAKOB,",
+   "end": "Landvogt von Landshut 1538. — LL. — Anshelm. [R. W.]",
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Hans Jakob",
+     "birth": null,
+     "death": null
+    }
+   ]
+  },
+  {
+   "headword": "ERLACH",
+   "continued": false,
+   "type": "geo",
+   "start": "ERLACH (Kt. Bern, Amtsbez. Erlach. S. GLS). Städtchen,",
+   "end": null
+  }
+ ],
+ "cer_region": "c2a"
+}

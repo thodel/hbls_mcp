@@ -1,0 +1,45 @@
+# Literature abbreviations and sigla that the old DigiBern cut took for headwords (plan §2) or that the
+# print sets in capitals. A bold capital word on this list never opens an article. Seed list; extended
+# from the "Bibliographische Abkürzungen" pages of the eight volumes (rebuild/abbrev.py).
+ADB
+AHVB
+AHS
+ASA
+ASG
+ASHF
+ASI
+AS
+BBG
+BT
+BSG
+BZG
+DHBS
+DHV
+GLS
+HBLS
+HS
+JSG
+KKZ
+LL
+LLH
+MAGZ
+MHVS
+NBT
+NZZ
+QSG
+QSRG
+RHS
+RHV
+SBB
+SKL
+SStG
+SZG
+SZGL
+UB
+UZ
+ZSG
+ZSK
+ZSR
+ZT
+ZWChr
+Hst

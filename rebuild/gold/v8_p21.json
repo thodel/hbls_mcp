@@ -1,0 +1,29 @@
+{
+ "volume": 8,
+ "pdf_page": 21,
+ "printed_page": 11,
+ "running_head": "AUSSERSIHL AUSSTELLUNGEN",
+ "articles": [
+  {
+   "headword": "AUSLIEFERUNG",
+   "continued": true,
+   "type": "tem",
+   "end": "Einzelfragen des Auslieferungsrechts. [Ch. LARDY u. E. SCHEIM.]"
+  },
+  {
+   "headword": "AUSSERSIHL",
+   "continued": false,
+   "type": "geo",
+   "start": "AUSSERSIHL (Kt., Bez. und Gem. Zürich. S. GLS). Eine der",
+   "end": "Geschichte der kathol. Gemeinde Zürich. [E. H.]"
+  },
+  {
+   "headword": "AUSSTELLUNGEN",
+   "continued": false,
+   "type": "tem",
+   "start": "AUSSTELLUNGEN (IN DER SCHWEIZ). Die erste A. in der Schweiz",
+   "end": null
+  }
+ ],
+ "cer_region": "c2a"
+}

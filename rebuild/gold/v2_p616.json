@@ -1,0 +1,299 @@
+{
+ "volume": 2,
+ "pdf_page": 616,
+ "printed_page": 596,
+ "running_head": "CLINDY CLUB FRATERNEL RÉVOLUTIONNAIRE",
+ "articles": [
+  {
+   "headword": "CLIAS, Phokion Heinrich",
+   "continued": true,
+   "type": "bio",
+   "end": "† 4. XI. 1854 in Morges. — Vergleiche SBB IV. [K.-R.]"
+  },
+  {
+   "headword": "CLINDY",
+   "continued": false,
+   "type": "geo",
+   "start": "CLINDY (Kt. Waadt, Bez. Yverdon). Vorstadt von Yverdon",
+   "end": "Schule für junge Waisen. — DHV. [M. R.]"
+  },
+  {
+   "headword": "CLIVANUS",
+   "continued": false,
+   "type": "verweis",
+   "start": "CLIVANUS. Siehe AMBÜHL, RUD.",
+   "end": "CLIVANUS. Siehe AMBÜHL, RUD."
+  },
+  {
+   "headword": "CLO",
+   "continued": false,
+   "type": "fam",
+   "start": "CLO. Geschlecht von Sitten. — LOUIS, genannt Blondel,",
+   "end": "Naturgeschichte und besonders Gedichte. [J. B. B.]",
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Louis",
+     "birth": 1835,
+     "death": 1920
+    }
+   ]
+  },
+  {
+   "headword": "CLOETTA",
+   "continued": false,
+   "type": "fam",
+   "start": "CLOETTA. Familie von Bergün, Celerina u. Scanfs (Graubünden)",
+   "end": "Christoph war schweizerischer Konsul daselbst. [L. J.]",
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": 1,
+     "name": "Jakob",
+     "birth": 1752,
+     "death": 1821
+    },
+    {
+     "branch": null,
+     "nr": 2,
+     "name": "Johann",
+     "birth": 1775,
+     "death": 1842
+    },
+    {
+     "branch": null,
+     "nr": 3,
+     "name": "Johann Pitschen",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 4,
+     "name": "Johann Pitschen",
+     "birth": 1792,
+     "death": 1865
+    },
+    {
+     "branch": null,
+     "nr": 5,
+     "name": "Arnold",
+     "birth": 1828,
+     "death": 1890
+    },
+    {
+     "branch": null,
+     "nr": 6,
+     "name": "Wilhelm",
+     "birth": 1853,
+     "death": 1911
+    },
+    {
+     "branch": null,
+     "nr": 7,
+     "name": "Max",
+     "birth": 1868,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Bernhard",
+     "birth": 1833,
+     "death": 1910
+    },
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Christoph",
+     "birth": 1835,
+     "death": 1897
+    },
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Nutin",
+     "birth": 1839,
+     "death": 1891
+    }
+   ]
+  },
+  {
+   "headword": "CLOIN",
+   "continued": false,
+   "type": "fam",
+   "start": "CLOIN. Bürgergeschlecht von Conters i. O. (Graubünden).",
+   "end": "erhielt 1597 vom Bischof von Chur den Wappenbrief. [L. J.]",
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Petrus",
+     "birth": null,
+     "death": null
+    }
+   ]
+  },
+  {
+   "headword": "CLOOS",
+   "continued": false,
+   "type": "fam",
+   "start": "CLOOS. † regimentsfähiges Geschlecht der Stadt Luzern.",
+   "end": "Luzern : Bürgerbuch, Besatzungsbuch. [v. V.]",
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Johann Klösselin",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Johann",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Joseph Leonz",
+     "birth": null,
+     "death": 1759
+    },
+    {
+     "branch": null,
+     "nr": 1,
+     "name": "Niklaus",
+     "birth": null,
+     "death": 1560
+    },
+    {
+     "branch": null,
+     "nr": 2,
+     "name": "Niklaus",
+     "birth": null,
+     "death": 1582
+    },
+    {
+     "branch": null,
+     "nr": 3,
+     "name": "Heinrich",
+     "birth": 1559,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 4,
+     "name": "Johann Christoph",
+     "birth": null,
+     "death": 1676
+    },
+    {
+     "branch": null,
+     "nr": 5,
+     "name": "Karl Hieronymus",
+     "birth": null,
+     "death": 1665
+    }
+   ]
+  },
+  {
+   "headword": "CLOPATH",
+   "continued": false,
+   "type": "fam",
+   "start": "CLOPATH. Altes rätoromanisches Geschlecht von Lohn im",
+   "end": "F. Jecklin : Die Amtsleute... — SKL. [G. CONRAD.]",
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": 1,
+     "name": "Gion",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 2,
+     "name": "Gion",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 3,
+     "name": "Clo",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 4,
+     "name": "Antonius",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 5,
+     "name": "Tumasch",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 6,
+     "name": "Henriette",
+     "birth": 1862,
+     "death": null
+    }
+   ]
+  },
+  {
+   "headword": "CLOS DU DOUBS",
+   "continued": false,
+   "type": "geo",
+   "start": "CLOS DU DOUBS (Kt. Bern. S. GLS). Berglandschaft in den",
+   "end": "Chèvre : Hist. de Saint-Ursanne.[G.A.]"
+  },
+  {
+   "headword": "CLOTTU",
+   "continued": false,
+   "type": "fam",
+   "start": "CLOTTU. Bürgerfamilie von Neuenburg, seit dem 15. Jahrh.",
+   "end": "Präsident der kantonalen Finanzdirektoren-Konferenz. [L. M.]",
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Emile",
+     "birth": 1850,
+     "death": 1920
+    },
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Alfred",
+     "birth": 1871,
+     "death": null
+    }
+   ]
+  },
+  {
+   "headword": "CLUB FRATERNEL RÉVOLUTIONNAIRE",
+   "continued": false,
+   "type": "tem",
+   "start": "CLUB FRATERNEL RÉVOLUTIONNAIRE. Der C. f. r., später",
+   "end": null
+  }
+ ],
+ "cer_region": "c2b"
+}

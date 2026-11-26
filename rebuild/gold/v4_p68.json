@@ -1,0 +1,220 @@
+{
+ "volume": 4,
+ "pdf_page": 68,
+ "printed_page": 58,
+ "running_head": "HALLAU HALLER",
+ "articles": [
+  {
+   "headword": "HALLAU (OBER- und UNTER-)",
+   "continued": true,
+   "type": "geo",
+   "end": "Stadtbibl. II, p. 758 f. [H. WERNER.]"
+  },
+  {
+   "headword": "HALLAU, VON",
+   "continued": false,
+   "type": "fam",
+   "start": "HALLAU, von (HALLAUER). † Geschlecht der Stadt Schaffhausen.",
+   "end": "† 1441. — Rüeger : Chronik. — US. [W.-K.]",
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Hermann",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Volkmar",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Burkhart",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Niklaus",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Johann I.",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Johann",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": null,
+     "name": "Hans",
+     "birth": null,
+     "death": 1441
+    }
+   ]
+  },
+  {
+   "headword": "HALLAUER",
+   "continued": false,
+   "type": "bio",
+   "start": "HALLAUER, BERTA, Schriftstellerin, Gattin von A. Gysel,",
+   "end": "Sonnenunterg (1906-1907 u. 1915). [W.-K.]"
+  },
+  {
+   "headword": "HALLENBARTER",
+   "continued": false,
+   "type": "fam",
+   "start": "HALLENBARTER (HALABARTER, HALAPARTER). Altes Geschlecht",
+   "end": "Münster (1550-1560). — BWG I u. II. [D. I.]",
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": 1,
+     "name": "Jenin",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 2,
+     "name": "Johann",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 3,
+     "name": "Simon",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 4,
+     "name": "Christian",
+     "birth": null,
+     "death": 1565
+    }
+   ]
+  },
+  {
+   "headword": "HALLER",
+   "continued": false,
+   "type": "fam",
+   "start": "HALLER. Familien der Kte. Aargau, Bern, St. Gallen und Zürich.",
+   "end": null,
+   "branches": [
+    {
+     "label": "A",
+     "name": "Kanton Aargau"
+    },
+    {
+     "label": "B",
+     "name": "Kanton Bern"
+    },
+    {
+     "label": "B.I",
+     "name": "Zweig des edlen Geschlechts von Courtelary"
+    },
+    {
+     "label": "B.II",
+     "name": "Ausgestorbenes Geschlecht des 15. und 16. Jahrh."
+    },
+    {
+     "label": "B.III",
+     "name": "Jüngeres, noch blühendes Geschlecht"
+    }
+   ],
+   "members": [
+    {
+     "branch": "A",
+     "nr": null,
+     "name": "Theodor",
+     "birth": 1841,
+     "death": 1887
+    },
+    {
+     "branch": "A",
+     "nr": null,
+     "name": "Anna",
+     "birth": 1872,
+     "death": 1924
+    },
+    {
+     "branch": "A",
+     "nr": null,
+     "name": "Paul",
+     "birth": 1882,
+     "death": 1920
+    },
+    {
+     "branch": "A",
+     "nr": 24,
+     "name": "Hermann",
+     "birth": 1880,
+     "death": null
+    },
+    {
+     "branch": "B.I",
+     "nr": 1,
+     "name": "Ulrich",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": "B.I",
+     "nr": 2,
+     "name": "Jean",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": "B.I",
+     "nr": 3,
+     "name": "Bourcard",
+     "birth": null,
+     "death": 1555
+    },
+    {
+     "branch": "B.II",
+     "nr": null,
+     "name": "Sulpitius",
+     "birth": null,
+     "death": 1564
+    },
+    {
+     "branch": "B.III",
+     "nr": 1,
+     "name": "Johannes",
+     "birth": 1487,
+     "death": null
+    },
+    {
+     "branch": "B.III",
+     "nr": 2,
+     "name": "Johannes",
+     "birth": 1523,
+     "death": 1575
+    }
+   ]
+  }
+ ],
+ "cer_region": "c2a"
+}

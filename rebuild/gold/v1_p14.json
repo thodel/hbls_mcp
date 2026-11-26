@@ -1,0 +1,53 @@
+{
+ "volume": 1,
+ "pdf_page": 14,
+ "printed_page": 3,
+ "running_head": "AADORF AARAU",
+ "articles": [
+  {
+   "headword": "AADORF",
+   "continued": true,
+   "type": "geo",
+   "end": "u. Gem. Elgg. Elgg 1895. [H. BR.]"
+  },
+  {
+   "headword": "AAHUSER oder AHUSER",
+   "continued": false,
+   "type": "fam",
+   "start": "AAHUSER oder AHUSER. Angesehenes † Geschlecht in der",
+   "end": "Hofrecht von Küssnacht. — Eigene Urkundensammlung. [A. T.]",
+   "branches": [],
+   "members": [
+    {
+     "branch": null,
+     "nr": 1,
+     "name": "Heini",
+     "birth": null,
+     "death": null
+    },
+    {
+     "branch": null,
+     "nr": 2,
+     "name": "Heini",
+     "birth": null,
+     "death": null
+    }
+   ]
+  },
+  {
+   "headword": "AAL",
+   "continued": false,
+   "type": "bio",
+   "start": "AAL, (Johannes), latinisiert Anguilla. † 28. 5. 1551.",
+   "end": "Bd 2, 3. Teil. Sol. 1875). [H. BR.]"
+  },
+  {
+   "headword": "AARAU",
+   "continued": false,
+   "type": "geo",
+   "start": "AARAU. (Siehe GLS). Seit 1803 Hauptstadt des Kan",
+   "end": null
+  }
+ ],
+ "cer_region": "c2b"
+}
