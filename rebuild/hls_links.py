@@ -6,7 +6,8 @@ and writes the table `article_links` into a separate output database, which the 
     article_links(hbls_id, hls_id, level, why, kind, article_id, member_n)
     article_link_review(hbls_id, kind, article_id, member_n, why, candidates)   -- ambiguous, not guessed
 
-IDs follow the plan: an article is `hbls-{volume}-{page}-{HEADWORD}`, a member `…#{member_n}`.
+IDs follow the plan: an article is `hbls-{volume}-{page}-{HEADWORD}`, a member `…#{member_n}` (see member_keys
+for numbers that repeat in one article or are missing).
 `article_id` is the row id in the input DB, kept for convenience (it is not stable across rebuilds).
 
 HLS candidates come from the HLS MCP server, throttled and cached (sqlite, one row per call):
@@ -14,12 +15,13 @@ HLS candidates come from the HLS MCP server, throttled and cached (sqlite, one r
     cantons and time span of a candidate from `get_article` (place_class "Schweiz -> BE", time_span);
   - persons: `search_persons` by family name (one call per surname), matched on given name and life dates.
 
-Levels (one HLS article per HBLS item; when several fit equally well the item goes to the review table):
+Levels (one HLS article per HBLS item). Not linked but listed in article_link_review: several candidates that
+fit equally well (mehrdeutig), and an exact name whose canton differs (prüfen).
   sicher         family/place: exact name, canton agrees (unique among the candidates)
                  person: given name agrees and birth AND death year agree (±1)
   wahrscheinlich family/place: exact name, single candidate, canton not checkable on one side
                  person: given name agrees and one life year agrees (±1), none contradicts
-  möglich        family/place: exact name but canton differs, or a near-identical spelling with agreeing canton
+  möglich        family/place: a near-identical spelling with agreeing canton
                  person: given name agrees and a life year lies within ±5 years, none contradicts
 A family whose HBLS years do not overlap the HLS time span drops one level.
 
@@ -164,8 +166,8 @@ def cantons_in(text: str | None, n: int = 400) -> set[str]:
     found = set()
     for code, (names, adjs) in CANTONS.items():
         # the squeezed text has no word ends: only short names need a guard («wil» ≠ «wiler»)
-        places = "|".join(re.escape(x) + (r"(?![a-zäöü])" if len(x) <= 4 else "")
-                          for x in names + TOWNS.get(code, []))
+        places = "|".join([re.escape(x) for x in names]
+                          + [re.escape(x) + (r"(?![a-zäöü])" if len(x) <= 4 else "") for x in TOWNS.get(code, [])])
         nm = "(?:" + "|".join(re.escape(x) for x in names) + ")"
         pl = "(?:" + places + ")"
         if (re.search(_KT + nm, s)
@@ -177,6 +179,7 @@ def cantons_in(text: str | None, n: int = 400) -> set[str]:
                 or re.search(r"(?:in|zu)(?:" + places + r")(?:eingebürgert|verbürgert|ansässig|verbreitet|"
                              r"niedergelassen)", s)
                 or re.search(r"(?:" + places + r")er(?:e|es|s)?" + _NOUN, s)
+                or re.search(r"^(?:\(.*?\)\.?)?(?:von|aus)(?:" + places + r")[.,;(]", s)
                 or any(re.search(re.escape(adj) + r"(?:e|er|es)?" + _NOUN, s) for adj in adjs)):
             found.add(code)
     if {"BS", "BL"} <= found and not re.search(r"baselstadt|basel-stadt|stadtbasel", s):
@@ -330,6 +333,18 @@ def parse_tool_result(raw: str):
     return payload
 
 
+def lexical_qualifier(classes) -> str:
+    """Qualifier of an HLS place article from its lexical class, for titles without one."""
+    txt = " ".join(classes or [])
+    if "Gemeinde" in txt or "Dorf" in txt or "Stadt" in txt:
+        return ""
+    for word, qual in (("Kloster", "Kloster"), ("Burg", "Burg"), ("Schloss", "Schloss"), ("Herrschaft", "Herrschaft"),
+                       ("Vogtei", "Vogtei"), ("Grafschaft", "Grafschaft")):
+        if word in txt:
+            return qual
+    return ""
+
+
 class Catalogue:
     """HLS titles of one category, by name key."""
 
@@ -345,6 +360,8 @@ class Catalogue:
             off += page
         for r in self.rows:
             key, qual = hls_title_key(r.get("title", ""))
+            if not qual:  # «Feldbach» is the convent: the lexical class says what the title does not
+                qual = lexical_qualifier(r.get("lexical_class"))
             r["_key"], r["_qual"] = key, qual
             if key:
                 self.by_key[key].append(r)
@@ -367,6 +384,28 @@ def hbls_id(volume, page, headword, member_n=None) -> str:
     hw = re.sub(r"\s+", "_", (headword or "").strip().upper())
     base = f"hbls-{volume}-{page}-{hw}"
     return f"{base}#{member_n}" if member_n is not None else base
+
+
+def member_keys(members: list[tuple]) -> list[tuple]:
+    """Append a member key to each (given, birth, death, member_n), in DB order. The numbers restart in every
+    branch of a family article (A. Bern 1., 2. … B. Schwyz 1., 2.) and are sometimes missing: «3» if unique,
+    «3.2» for the second member numbered 3, «x1», «x2» … for members without a number."""
+    seen: dict = defaultdict(int)
+    total: dict = defaultdict(int)
+    for m in members:
+        total[m[3]] += 1
+    out = []
+    for m in members:
+        n = m[3]
+        seen[n] += 1
+        if n is None:
+            key = f"x{seen[n]}"
+        elif total[n] > 1:
+            key = f"{n}.{seen[n]}"
+        else:
+            key = str(n)
+        out.append((*m, key))
+    return out
 
 
 def _down(level: str) -> str | None:
@@ -448,8 +487,10 @@ def match_named(kind: str, headword: str, text: str, cat: Catalogue, hls: HLS) -
     elif len(info) == 1 and not near:
         c, cc, span = info[0]
         if hb_cant and cc:
-            level = "möglich"
-            why = f"Name gleich ({c['title']}), Kanton verschieden: HBLS {'/'.join(sorted(hb_cant))}, HLS {'/'.join(sorted(cc))}"
+            # in the sample, 3 of 4 such cases were another family or place of the same name: review, not link
+            return {"level": "prüfen", "candidates": [c["id"]],
+                    "why": f"Name gleich ({c['title']}), Kanton verschieden: HBLS {'/'.join(sorted(hb_cant))}, "
+                           f"HLS {'/'.join(sorted(cc))}"}
         else:
             level = "wahrscheinlich"
             why = f"Name gleich ({c['title']}), einziger HLS-Titel, Kanton nicht prüfbar"
@@ -594,13 +635,16 @@ def run(db: str, out: str, hls: HLS, kinds=("fam", "geo", "bio", "member"), limi
     cats = {}
     stats: dict[str, dict[str, int]] = defaultdict(lambda: defaultdict(int))
 
+    reviewed: set = set()
+
     def store(kind, hid, aid, mn, res):
         lvl = res.get("level")
         stats[kind][lvl or "kein"] += 1
         if lvl in LEVELS:
             dst.execute("INSERT OR REPLACE INTO article_links VALUES (?,?,?,?,?,?,?)",
                         (hid, res["hls_id"], lvl, res["why"], kind, aid, mn))
-        elif lvl == "mehrdeutig":
+        elif lvl in ("mehrdeutig", "prüfen") and (hid, res["why"]) not in reviewed:  # the DB repeats rows
+            reviewed.add((hid, res["why"]))
             dst.execute("INSERT INTO article_link_review VALUES (?,?,?,?,?,?)",
                         (hid, kind, aid, mn, res["why"], json.dumps(res.get("candidates", []))))
 
@@ -609,8 +653,11 @@ def run(db: str, out: str, hls: HLS, kinds=("fam", "geo", "bio", "member"), limi
         rows = rows[:limit]
     members = defaultdict(list)
     if "member" in kinds:
-        for r in src.execute("SELECT article_id, given, birth_year, death_year, member_n FROM members"):
+        rows_m = src.execute("SELECT article_id, given, birth_year, death_year, member_n FROM members "
+                             "ORDER BY article_id, id").fetchall()
+        for r in rows_m:
             members[r[0]].append(r[1:])
+        members = {a: member_keys(ms) for a, ms in members.items()}
     n = 0
     for aid, hw, vol, page, text in rows:
         kind = article_kind(hw, text)
@@ -625,8 +672,8 @@ def run(db: str, out: str, hls: HLS, kinds=("fam", "geo", "bio", "member"), limi
             store("bio", hid, aid, None, match_person(given, b, d, persons_named(hls, hw)))
         if members.get(aid) and "member" in kinds:
             cands = persons_named(hls, hw)
-            for given, b, d, mn in members[aid]:
-                store("member", hbls_id(vol, page, hw, mn), aid, mn, match_person(given, b, d, cands))
+            for given, b, d, mn, mkey in members[aid]:
+                store("member", hbls_id(vol, page, hw, mkey), aid, mn, match_person(given, b, d, cands))
         n += 1
         if n % 500 == 0:
             dst.commit()

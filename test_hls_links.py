@@ -41,6 +41,8 @@ def test_hls_title_key():
     ("Seit 1649 in Basel eingebürgertes Geschlecht", {"BS"}),
     ("Verbreitetes Geschlecht des K ts. Bern", {"BE"}),
     ("Fam ilie von Sauvigny im B ourbonnais", set()),
+    ("f Bürgerliches Geschlecht der S tadt Bern seit 1643.", {"BE"}),
+    ("von Einsiedeln. Wappen : geteilt von Blau und Rot", {"SZ"}),
 ])
 def test_cantons_in(text, want):
     assert hl.cantons_in(text) == want
@@ -75,6 +77,17 @@ def test_place_kind():
     assert hl.place_kind("(K t. Bern, Am tsbez. Erlach. S. GLS). Städtchen") == ""
     assert hl.place_kind("(Kt. Luzern). Kloster der Zisterzienserinnen") == "Kloster"
     assert hl.QUAL_GROUP["Landvogtei"] == hl.QUAL_GROUP["Amtsbezirk"]
+
+
+def test_lexical_qualifier():
+    assert hl.lexical_qualifier(["Orte & Räume -> Religiös-kirchliche Einheiten -> Kloster, Abtei, Propstei"]) == "Kloster"
+    assert hl.lexical_qualifier(["Orte & Räume -> Politische Einheiten -> Gemeinde"]) == ""
+    assert hl.lexical_qualifier(None) == ""
+
+
+def test_member_keys():
+    ms = [("Peter", 1300, None, 1), ("Hans", None, 1400, 2), ("Ulrich", 1500, None, 1), ("Anna", None, None, None)]
+    assert [m[-1] for m in hl.member_keys(ms)] == ["1.1", "2", "1.2", "x1"]
 
 
 def test_bio_head():
@@ -175,6 +188,7 @@ def setup(tmp_path):
         (5, "ERLACH", 3, 69, "von. Altangesehenes adeliges Berner Geschlecht. 1300."),
         (6, "GYSINN", 4, 1, "Geschlecht des Kts. Basel-Landschaft. 1600."),
         (7, "SZGL", 6, 1, "Schweizer Geschlechterbuch."),
+        (8, "KISTLER", 4, 511, "Familie des Kts. Bern. 1500."),
     ])
     c.executemany("INSERT INTO members(article_id, given, birth_year, death_year, member_n) VALUES (?,?,?,?,?)",
                   [(5, "Rudolf", 1299, 1360, 1), (5, "Hans", None, None, 2)])
@@ -208,6 +222,7 @@ def test_run(setup):
     assert not any(k.startswith("hbls-6-1-SZGL") for k in links)
     review = {r[0]: json.loads(r[1]) for r in o.execute("SELECT hbls_id, candidates FROM article_link_review")}
     assert sorted(review["hbls-5-2-MEYER"]) == ["F2", "F3"]
+    assert "hbls-4-511-KISTLER" not in links and review["hbls-4-511-KISTLER"] == ["F1"]  # BE vs SZ: review
     assert stats["_types"]["skip"] == 1
     # the input DB is untouched
     assert sqlite3.connect(db).execute("SELECT name FROM sqlite_master WHERE name='article_links'").fetchone() is None
